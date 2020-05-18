@@ -16,12 +16,12 @@ y1 = np.transpose(y1)
 
 
 from sklearn.model_selection import train_test_split
-x1_train,x1_test,y1_train,y1_test = train_test_split( 
-    x1, y1, shuffle=False, train_size=0.8)
+x1_train,x1_test,x2_train, x2_test,y1_train,y1_test = train_test_split( 
+    x1, x2, y1, shuffle=False, train_size=0.8)
 
-from sklearn.model_selection import train_test_split
-x2_train,x2_test = train_test_split( 
-    x2, shuffle=False, train_size=0.8)
+# from sklearn.model_selection import train_test_split
+# x2_train,x2_test = train_test_split( 
+#     x2, shuffle=False, train_size=0.8)
 
 
 
@@ -97,7 +97,7 @@ model.summary()
 #3. 훈련
 model.compile(loss='mse',optimizer='adam', metrics=['mse']) # 회기방식과 분류방식 2가지 ?  # mse는 실제 값과 예측값의 차이를 평균하는것 
 model.fit([x1_train,x2_train],
-          y1_train, epochs=1000, batch_size=1,
+          y1_train, epochs=1, batch_size=1,
            validation_split=0.25, verbose=3) # batch_size = 32(default)
 
 model.summary()
