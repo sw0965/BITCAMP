@@ -25,22 +25,19 @@ from keras.models import Sequential
 from keras.layers import Dense # DNN구조의 기본
 
 model = Sequential()
-model.add(Dense(5,input_dim=3,activation='relu'))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
-# model.add(Dense(222))
-# model.add(Dense(222))
-# model.add(Dense(222))
-model.add(Dense(100))
-model.add(Dense(19))
-model.add(Dense(20))
+# model.add(Dense(5,input_dim=3))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
+model.add(Dense(5,input_shape=(3, )))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
+
+model.add(Dense(3))
 model.add(Dense(1))
 
 #3. 훈련
 model.compile(loss='mse',optimizer='adam', metrics=['mse']) # 회기방식과 분류방식 2가지 ?  # mse는 실제 값과 예측값의 차이를 평균하는것 
 model.fit(x_train,y_train,epochs=10, batch_size=1,
             validation_split=0.25, verbose=3) # batch_size = 32(default)
-
+'''
 model.summary()
-
+'''
 #4. 평가, 예측
 loss,mse = model.evaluate(x_test,y_test,batch_size=3) # evaluate -> 결과 반환(기본적으로 loss와 metrics를 반환)을 loss와 acc에 받겠다.
 

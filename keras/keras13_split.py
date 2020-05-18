@@ -3,7 +3,6 @@ import numpy as np
 x = np.array(range(1,101))
 y = np.array(range(101,201))
 
-
 from sklearn.model_selection import train_test_split
 # train_size=0.9로 잡으면 1,3번째 변수에 0.95만큼 나머지 자동 test_size를 잡아주면 2,4번째로 할당하고 나머지 자동 
 x_train,x_test,y_train,y_test = train_test_split( 

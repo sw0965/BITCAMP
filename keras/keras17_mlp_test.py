@@ -3,9 +3,11 @@ import numpy as np
 x = np.array([range(1,101),range(311,411),range(100)])
 y = np.array(range(711,811))
 
+print("x_data",x)
+print("y_data",y)
 print(x.shape)
 
-
+'''
 from sklearn.model_selection import train_test_split
 # train_size=0.9로 잡으면 1,3번째 변수에 0.95만큼 나머지 자동 test_size를 잡아주면 2,4번째로 할당하고 나머지 자동 
 x_train,x_test,y_train,y_test = train_test_split( 
@@ -18,13 +20,13 @@ x_train,x_test,y_train,y_test = train_test_split(
 print("x_train",x_train,"\ny_train",y_train)
 print("x_test",x_test,"\ny_test",y_test)
 
-'''
+
 #2. 모델구성
 from keras.models import Sequential
 from keras.layers import Dense # DNN구조의 기본
 
 model = Sequential()
-model.add(Dense(5,input_dim=1,activation='relu'))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
+model.add(Dense(5,input_dim=3,activation='relu'))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
 # model.add(Dense(222))
 # model.add(Dense(222))
 # model.add(Dense(222))
@@ -70,7 +72,7 @@ print("r2 : ",r2_y_predict)
 #4. epoch는 30개 이상
 #5. batch_size는 8 이하
 
-"""
+
 
  # Question
 
@@ -79,8 +81,5 @@ print("r2 : ",r2_y_predict)
 
 
  # homework
- 
-
-"""
  
  '''

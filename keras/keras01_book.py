@@ -15,7 +15,7 @@ model.add(Dense(1,input_dim = 1,activation='relu'))
 
 # 3. 훈련
 model.compile(loss = 'mean_squared_error', optimizer='adam',metrics=['accuracy'])
-model.fit(x,y,epochs=10,batch_size=1)
+model.fit(x,y,epochs=500,batch_size=1)
 
 
 # 4. 평가 예측
