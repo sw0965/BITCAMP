@@ -10,21 +10,21 @@ from sklearn.model_selection import train_test_split
 # train_size=0.9로 잡으면 1,3번째 변수에 0.95만큼 나머지 자동 test_size를 잡아주면 2,4번째로 할당하고 나머지 자동 
 x_train,x_test,y_train,y_test = train_test_split( 
     x,y,random_state = 66, shuffle=True,
-    train_size=0.95
+    train_size=0.8)
     # train_size=0.8, test_size=0.1    0.1은 그냥 버려짐 
     # # test_size=0.05 둘중 하나만 쓰면 나머지는 알아서 자동으로 잡히는거 같은데..
-    )
+    
 
 print("x_train",x_train,"\ny_train",y_train)
 print("x_test",x_test,"\ny_test",y_test)
 
-'''
+
 #2. 모델구성
 from keras.models import Sequential
 from keras.layers import Dense # DNN구조의 기본
 
 model = Sequential()
-model.add(Dense(5,input_dim=1,activation='relu'))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
+model.add(Dense(5,input_dim=3,activation='relu'))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
 # model.add(Dense(222))
 # model.add(Dense(222))
 # model.add(Dense(222))
@@ -63,18 +63,3 @@ print("RMSE : ", RMSE(y_test,y_predict))
 from sklearn.metrics import r2_score
 r2_y_predict = r2_score(y_test,y_predict)
 print("r2 : ",r2_y_predict)
-
-"""
-
- # Question
-
-
- # Note
-
-
- # homework
- 
-
-"""
- 
- '''

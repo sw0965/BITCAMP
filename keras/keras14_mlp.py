@@ -31,14 +31,14 @@ from keras.models import Sequential
 from keras.layers import Dense # DNN구조의 기본
 
 model = Sequential()
-model.add(Dense(5,input_dim=1,activation='relu'))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
+model.add(Dense(5,input_dim=3,activation='relu'))#인풋 1개 첫 아웃풋5개 activation도 default가 있음
 # model.add(Dense(222))
 # model.add(Dense(222))
 # model.add(Dense(222))
 model.add(Dense(100))
 model.add(Dense(19))
 model.add(Dense(20))
-model.add(Dense(1))
+model.add(Dense(3))
 
 #3. 훈련
 model.compile(loss='mse',optimizer='adam', metrics=['mse']) # 회기방식과 분류방식 2가지 ?  # mse는 실제 값과 예측값의 차이를 평균하는것 
