@@ -1,9 +1,11 @@
 #1. 데이터
+
 import numpy as np
 x1 = np.array([range(1,101),range(311,411),range(411,511)])
 x2 = np.array([range(711,811), range(711,811),range(511,611)])
 
 y1 = np.array([range(101,201),range(411,511),range(100)])
+
 
 
 ######################

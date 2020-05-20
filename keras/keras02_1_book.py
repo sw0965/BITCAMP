@@ -4,7 +4,7 @@ import numpy as np
 ls = []
 for i in range(50001):
     ls.append(i)
-
+print(i)
 
 train_list = ls[0:49990]
 test_list = ls[49990:50001]

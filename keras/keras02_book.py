@@ -13,12 +13,12 @@ from keras.layers import Dense
 
 model = Sequential()
 model.add(Dense(5,input_dim = 1,activation='relu')) #하나의 인풋을 3개의 노드로 전달 첫번째 히든 레이어
-model.add(Dense(3))
-model.add(Dense(2))
-"""model.add(Dense(720))
-model.add(Dense(100))
-model.add(Dense(350))
-model.add(Dense(10))"""
+model.add(Dense(8))
+model.add(Dense(10))
+model.add(Dense(30))
+model.add(Dense(20))
+model.add(Dense(10))
+model.add(Dense(5))
 model.add(Dense(1,activation='relu'))
 
 model.summary()
