@@ -11,3 +11,11 @@ model = Sequential()
 model.add(Dense(5, input_dim = 1))
 model.add(Dense(3))
 model.add(Dense(1000000))
+model.add(Dense(1))
+
+
+model.compile(loss='mse', optimizer='adam', metrics=['mse'])
+model.fit(x, y, batch_size=1, epochs=50)
+
+y_predict = model.predict(x)
+print(y_predict)
