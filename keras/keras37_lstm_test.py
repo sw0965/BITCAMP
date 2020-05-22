@@ -58,9 +58,9 @@ model.summary()
 
 #3. 실행
 from keras.callbacks import EarlyStopping
-early_stopping = EarlyStopping(monitor='loss', patience=15, mode='auto')
+early_stopping = EarlyStopping(monitor='loss', patience=20, mode='auto')
 model.compile(loss='mse',optimizer='adam') 
-model.fit(x, y, epochs=10000, batch_size=64, verbose=2, callbacks=[early_stopping])  #5104
+model.fit(x, y, epochs=10000, batch_size=10, verbose=2, callbacks=[early_stopping])  #5104
 x_predict = x_predict.reshape(1, 3, 1)
 
 print(x_predict)
