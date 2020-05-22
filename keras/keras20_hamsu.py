@@ -27,7 +27,7 @@ from keras.layers import Dense, Input # DNN구조의 기본
 # model.add(Dense(4))
 # model.add(Dense(1))
 
-'''
+
 input1 = Input(shape=(3, ))
 dense1 = Dense(10, activation='relu')(input1)
 dense1 = Dense(100, activation='relu')(dense1)
@@ -38,7 +38,7 @@ dense1 = Dense(70, activation='relu')(dense1)
 dense1 = Dense(50, activation='relu')(dense1)
 dense1 = Dense(30, activation='relu')(dense1)
 output1 = Dense(1)(dense1)
-'''
+
 
 input1 = Input(shape=(3, ))
 dense1 = Dense(222, activation='relu')(input1)
@@ -54,9 +54,9 @@ dense10 = Dense(10, activation='relu')(dense9)
 output1 = Dense(1)(dense10)
 
 model = Model(inputs = input1, outputs = output1) #히든레이어 명시가 필요없으니 위에 명시를 해주는것 Sequential() 이거처럼
-'''
+
 model.summary()
-'''
+
 
 # 0.019=100, 0.007 0.9935
 
@@ -64,9 +64,9 @@ model.summary()
 model.compile(loss='mse',optimizer='adam', metrics=['mse']) # 회기방식과 분류방식 2가지 ?  # mse는 실제 값과 예측값의 차이를 평균하는것 
 model.fit(x_train,y_train,epochs=600, batch_size=1,
             validation_split=0.25, verbose=3) # batch_size = 32(default)
-'''
+
 model.summary()
-'''
+
 #4. 평가, 예측
 loss,mse = model.evaluate(x_test,y_test,batch_size=1) # evaluate -> 결과 반환(기본적으로 loss와 metrics를 반환)을 loss와 acc에 받겠다.
 
