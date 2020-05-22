@@ -36,3 +36,7 @@ LSTM의 forget, input gate를 하나의 Update gate로!
 만약 z가 0이라면 이번 step의 히든 스테이트는 이전 레이어의 히든 스테이트를 그대로 Copy합니다(identity mapping)
 
 RNN은 게이트가 하나
+
+
+
+0522 ctr+f5할때 나오는것들만 데이터 정리

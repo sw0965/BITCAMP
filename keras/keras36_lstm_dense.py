@@ -12,8 +12,10 @@ x = array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],
 y = array([4,5,6,7,8,9,10,11,12,13,50,60,70])
 
 x_predict = array([55, 65, 75])
+# print(x_predict)
 
 
+x_predict = x_predict.reshape(1, 3)
 # print('x.shape : ', x.shape)
 print('x_predict.shape : ', x_predict.shape)
 # x = x.reshape(x.shape[0], x.shape[1], 1)
@@ -46,10 +48,10 @@ model.summary()
 #3. 실행
 from keras.callbacks import EarlyStopping
 early_stopping = EarlyStopping(monitor='loss', patience=5, mode='auto')
-model.compile(loss='mse',optimizer='adam', metrics=['mse']) 
-model.fit(x, y, epochs=1, batch_size=16, verbose=2) #, callbacks=[early_stopping])  #5104
-x_predict = x_predict(3,)
+model.compile(loss='mse',optimizer='adam') 
+model.fit(x, y, epochs=10000, batch_size=16, verbose=2 , callbacks=[early_stopping])  #5104
 
+x_predict = x_predict.reshape(1, 3)
 print(x_predict)
 
 y_predict = model.predict(x_predict)
