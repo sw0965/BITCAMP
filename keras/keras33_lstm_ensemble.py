@@ -1,5 +1,5 @@
 # 앙상블 모델로 리모델하시오
-#2개들어가서 하나 나오는거.
+# 2개들어가서 하나 나오는거.
 
 from numpy import array
 from keras.models import Model

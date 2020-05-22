@@ -1,19 +1,3 @@
-from numpy import array
-
-x1 = array([1,2,3,4,5,6])
-x2 = array([[1,2,3],[4,5,6]])
-x3 = array([[1],[2],[3],[4],[5]])
-x4 = array([[[1],[2]],[[2],[3]]])
-
-y = array([1,2,3,4,5,6,7,8])
-
-print('x1.shape : ', x1.shape)
-print('x2.shape : ', x2.shape)
-print('x3.shape : ', x3.shape)
-print('x4.shape : ', x4.shape)
-
-
-'''
 
 from numpy import array
 from keras.models import Sequential, Model
@@ -35,12 +19,12 @@ print('x.reshape :', x.reshape)
 
 
 #2. 모델구성
-# def multi_input_lstm_embedding_model():
+# return_sequences=True
 input1 = Input(shape=(3, 1)) 
-input1_1 = LSTM(1, name='lstm1')(input1)
-# input1_1 = LSTM(1, name='lstm2')(input1_1)
-input1_1 = Dense(9, name='dense1')(input1_1)
-input1_1 = Dense(9, name='dense2')(input1_1)
+input1_1 = LSTM(10, return_sequences=True, name='lstm1')(input1)
+input1_1 = LSTM(10, return_sequences=False, name='lstm2')(input1_1)
+input1_1 = Dense(5, name='dense1')(input1_1)
+input1_1 = Dense(1, name='dense2')(input1_1)
 input1_1 = Dense(2, name= 'dense3')(input1_1)
 
 
@@ -56,7 +40,7 @@ model = Model(inputs = input1, outputs = output1_1)
 
 
 model.summary()
-
+'''
 #3. 실행
 from keras.callbacks import EarlyStopping
 early_stopping = EarlyStopping(monitor='loss', patience=5, mode='auto')
