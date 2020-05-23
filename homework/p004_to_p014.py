@@ -165,3 +165,138 @@ def most_common_interests_with(user):
         for interested_user_id in user_ids_by_interest[interest]
         if interested_user_id != user["id"])
         
+
+# 1.3.3 연봉과 경력
+
+''' 익명화 데이터, 연봉(salary)이 달러로, 근속 기간(tenure)이 연 단위로 표기 '''
+
+salaries_and_tenures = [(83000, 8.7), (88000, 8.1),
+                         (48000, 0.7), (76000, 6),
+                         (69000, 6.5), (76000, 7.5),
+                         (60000, 2.5), (83000, 10),
+                         (48000, 1.9), (63000, 4.2)]
+
+''' 더 많은 경력을 가진 사람이 더 높은 연봉을 받는다는 결과 (책 그림)
+근석 연수에 따라 평균 연봉이 어떻게 달라지는지 보기'''
+
+
+# 키는 근속 연수, 값은 해당 근속 연수에 대한 연봉 목록
+salary_by_tenure = defaultdict(list)
+
+for salary, tenure in salaries_and_tenures:
+    salary_by_tenure[tenure].append(salary)
+
+# 키는 근속 연수, 값은 해당 근속 연수의 평균 연봉
+average_salary_by_tenure = {
+    tenure: sum(salaries) / len(salaries)
+    for tenure, salaries in salary_by_tenure.items()
+}    
+''' 근속 연수가 같은 사람이 없어 결과가 쓸모 없음. 사용자 개개인의 연봉을 보여주는 것과 다르지 않기 때문이다.'''
+
+{0.7: 48000.0,
+ 1.9: 48000.0,
+ 2.5: 60000.0,
+ 4.2: 63000.0,
+ 6: 76000.0,
+ 6.5: 69000.0,
+ 7.5: 76000.0,
+ 8.1: 88000.0,
+ 8.7: 83000.0,
+ 10: 83000.0}
+
+'''차라리 아래와 같이 경력을 몇 개의 구간으로 나누고'''
+def tenure_bucket(tenure):
+     if tenure < 2:
+         return "less than two"
+     elif tenure < 5:
+        return "between two and five"
+     else: 
+        return "more than five"
+'''각 연봉을 해단 구간에 대응시켜 보자.'''
+
+# 키는 근속 연수 구간, 값은 해당 구간에 속하는 사용자들의 연봉
+salary_by_tenure_bucket = defaultdict(list)
+
+for salary, tenure in salaries_and_tenures:
+    bucket = tenure_bucket(tenure)
+    salary_by_tenure_bucket[bucket].append(salary)
+
+'''마지막으로 각 구간의 평균 연봉을 구해 보면'''
+# 키는 근속 연수 구간, 값은 해당 구간에 속하는 사용자들의 평균 연봉
+average_salary_by_bucket = {
+    tenure_bucket: sum(salaries) / len(salaries)
+    for tenure_bucket, salaries in salary_by_tenure_bucket.items()}
+
+{'between two and five': 61500.0,
+ 'less than two': 48000.0,
+ 'more than five': 79166.66666666667}
+
+# 1.3.4 유료 계정
+'''유료 계정 전환 파악'''
+'''
+0.7 paid
+1.9 unpaid
+2.5 paid
+4.2 unpaid
+6.0 unpaid
+6.5 unpaid
+7.5 unpaid
+8.1 unpaid
+8.7 paid
+10.0 paid
+'''
+ 
+'''유료 계정 사용 여부를 예측할 수 있는 간단한 모델 만들기'''
+ 
+def predict_paid_or_unpaid(years_experience):
+    if years_experience < 3.0:
+         return "paid"
+    elif years_experience < 8.5:
+        return "unpaid"
+    else:
+        return "paid"
+
+# 1.3.5 관심 주제
+
+interests = [
+    (0, "Hadoop"), (0, "Big Data"), (0, "HBase"), (0, "Java"),
+    (0, "Spark"), (0, "Storm"), (0, "Cassandra"),
+    (1, "NoSQL"), (1, "MongoDB"), (1, "Cassandra"), (1, "HBase"),
+    (1, "Postgres"), (2, "Python"), (2, "scikit-learn"), (2, "scipy"),
+    (2, "numpy"), (2, "statsmodels"), (2, "pandas"), (3, "R"), (3, "Python"),
+    (3, "statistics"), (3, "regression"), (3, "probability"),
+    (4, "machine learning"), (4, "regression"), (4, "decision trees"),
+    (4, "libsvm"), (5, "Python"), (5, "R"), (5, "Java"), (5, "C++"),
+    (5, "Haskell"), (5, "Programming languages"), (6, "statistics"),
+    (6, "probability"), (6, "mathematics"), (6, "theory"),
+    (7, "machine learning"), (7, "scikit-learn"), (7, "Mahout"),
+    (7, "neural networks"), (8, "neural networks"), (8, "deep learning"),
+    (8, "Big Data"), (8, "artificial intelligence"), (9, "Hadoop"),
+    (9, "Java"), (9, "MapReduce"), (9, "Big Data")]
+
+words_and_counts = Counter(word
+                           for user, interest in interests
+                           for word in interest.lower().split())
+''' 이 중에서 한 번을 초과해서 등장하는 단어들만 출력하면'''
+for word, count in words_and_counts.most_common():
+    if count > 1:
+        print(word, count)                        
+'''원하는 결과를 얻을 수 있다. ('scikit-learn' 이 두개의 단어로 쪼개지기를 원했다면 이 방법이 조금 아쉽긴 할 것이다.)'''
+
+
+# big 3
+# data 3
+# java 3
+# python 3
+# learning 3
+# hadoop 2
+# hbase 2
+# cassandra 2
+# scikit-learn 2
+# r 2
+# statistics 2
+# regression 2
+# probability 2
+# machine 2
+# neural 2
+# networks 2
