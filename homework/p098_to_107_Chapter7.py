@@ -26,4 +26,4 @@ def normal_approximations_to_binomial(n: int, p: float):
 # random.seed(0)
 # experiments = [run_experiment() for _ in range(1000)]
 # num_rejections = len([experiment for experiment in experiments if reject_fairness(experiment)])
-# assert num_rejections == 46    
+# assert num_rejections == 46 con   

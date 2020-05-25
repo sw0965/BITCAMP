@@ -33,7 +33,7 @@ plt.show()
 from collections import Counter
 grades = [83, 95, 91, 87, 70, 0, 85, 82, 100, 67, 73, 77, 0]
 
-# 점수는 10점 단위로 그룹화 한다. 100점은 90점대에 속한다
+# 점수는 10점 단위로 그룹화 한다. 100점은 90점대에 속한다sss
 histogram = Counter(min(grade // 10 * 10, 90) for grade in grades)
 
 plt.bar([x + 5 for x in histogram.keys()],   # 각 막대를 오른쪽으로 5만큼 옮기고

@@ -61,7 +61,7 @@ plt.show()
 
 # def inverse_normal_cdf(p: float,
 #                        mu: float = 0,
-#                        sigma: float = 1,
+#                        sigma: float = 1,ddd
 #                        tolerance: float = 0.00001):
 # if mu != or sigma != 1:
 #     return mu + sigma * inverse_normal_cdf(p, tolerance=tolerance)
