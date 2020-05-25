@@ -9,3 +9,10 @@ x-평균
 ------
 표편
 
+tensorboard
+
+cmd - d: -내 파일 있는곳으로 경로 
+cd study
+
+tensorboard --logdir=.
+웹 127.0.0.1:6006
