@@ -12,7 +12,7 @@ x = array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],
 y = array([4,5,6,7,8,9,10,11,12,13,50,60,70])
 
 x_predict = array([55, 65, 75])
-# print(x_predict)
+print(x_predict)
 
 
 x_predict = x_predict.reshape(1, 3)

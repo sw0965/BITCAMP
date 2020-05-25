@@ -1,3 +1,5 @@
+#데이터 자르는거
+
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, LSTM
@@ -12,7 +14,7 @@ print("========453243===========")
 
 def split_x(seq, size):    #size = lstm의 timesteps (열)
     aaa = []
-    for i in range(len(seq) - size + 1):
+    for i in range(len(seq) - size + 1): #<-이게 행 길이에서 - size + 1 = 열 
         subset = seq[i : (i + size)]
         aaa.append([item for item in subset])   #가장중요
     print(type(aaa))
