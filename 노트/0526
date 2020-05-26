@@ -4,8 +4,57 @@
 one hot encording
 
 
+이진분류
+
+activation은 각 노드 값에 곱해주는 것 그래서 마지막에 
+sigmoid로 빼준다  = 0아니면 1로 나오는거.
+
+#3. 컴파일, 훈련
+model.compile(loss = 'binary_crossentropy') 
+#0인데 1 나올수도 있으니 mertrics에서 accuracy를 쓴다.
+#로스값은 이진분류 하게되면 binary 저거 하나밖에 없음.
+
+다중분류
+model.add(Dense(6, activation='softmax')) softmax 사용
+softmax 로 빼준다  = 다중 값을 0아니면 1로 나오는거.
+
+#3. 컴파일, 훈련
+model.compile(loss = 'categorical_crossentropy')
+
 # cnn 정리 
 
 
 from keras.layers import Conv2D, MaxPooling2D, Flatten을 사용
-model.add(Conv2D(10{필터},(2, 2),))
+model.add(Conv2D(filters,(kernel_size(K), kernel_size(K)), 
+                 input_shape=(B, H, W, C), Padding=('?'), strides=?))
+
+Filters = 아웃풋(인수는 정수로 사용할 커널의 개수를 지정한다. 
+                 문제의 복잡도에 따라 달라지며 문제가 복잡할수록 
+                더 많은 개수의 커널이 필요하다.)                
+
+kernel_size = 자르는 크기(튜플로 사용할 커널의 그키를 지정한다
+                         패딩방식의 문제로 홀수크기로 사용
+                         (7,7)이상의 크기는 거의 사용하지 않는다)
+                         Kernel_size=(2,2)  = Kernel_size=2
+
+B = Batch_size 무시
+H = 사진의 가로
+W = 사진의 세로
+C = 사진의 색상 chnnel
+(여러 사진은 다 같은 사이즈로 사용해야함)
+
+Padding = default 값은 valid(10x10 이미지 케널을 (2, 2)로 할 경우 다음 레이어에선
+                             9x9로 또 다음 레이어에선 8x8로 데이터를 잘라준다.)
+          반면 same 으로 했을 경우 10x10이 계속 유지된다.
+
+strides = 몇 칸씩 데이터를 확인할거냐 라는 뜻으로, kernel 값보다 커질 수 없다.
+          만약 padding의 same과 같이 쓰일경우 padding 을 무시.          
+
+MaxPooling2D = 데이터를 잘랐을때 잘린 데이터에 중요도를 숫자로 표현하고 
+               그 max값을 산출.
+
+Flatten = Dense로 추출하기 전 데이터를 일자로 펴주는 과정.
+          3x3 짜리 사진 5장이 있을때 3x3,3x3,3x3,3x3,3x3 = 15로
+          cnn은 none빼고 3차원이라 2차원 대입이 필요한 Dense를 위해 하는 과정.
+
+CNN 파라미터 계산법 = K * K(커널) * C * filters(출력채널) + Bias(출력채널)
