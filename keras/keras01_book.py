@@ -16,10 +16,3 @@ model.add(Dense(1,input_dim = 1,activation='relu'))
 # 3. 훈련
 model.compile(loss = 'mean_squared_error', optimizer='adam',metrics=['accuracy'])
 model.fit(x,y,epochs=200,batch_size=1)
-
-
-# 4. 평가 예측
-los, acc = model.evaluate(x, y, batch_size =1)
-
-print("loss : " ,los )
-print("acc : " ,acc )

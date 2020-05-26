@@ -1,0 +1,11 @@
+숙제 48 0과 1이나오게 한다. 또 다른방법이 있음
+한땀한땀 만든다 , 남이 잘 만든걸 찾는다, 뭔가 다른게 있다.
+
+one hot encording
+
+
+# cnn 정리 
+
+
+from keras.layers import Conv2D, MaxPooling2D, Flatten을 사용
+model.add(Conv2D(10{필터},(2, 2),))
