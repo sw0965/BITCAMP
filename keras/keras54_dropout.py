@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout
+from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout, Activation
 from keras.datasets import mnist  #datasets  = 케라스에 있는 예제파일들
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -47,44 +47,39 @@ print(y_test.shape)
 # 모델구성
 
 model = Sequential()
-model.add(Conv2D(10, (3,3), padding='same', input_shape=(28,28,1))) 
-# model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(30, (2,2), input_shape=(28,28,1))) 
 # model.add(Dropout(0.3))
+model.add(Activation('relu'))
+model.add(Conv2D(30, (2,2), padding='same'))   
+model.add(Activation('relu'))
 
+model.add(Conv2D(30, (2,2), padding='same'))   
+model.add(Activation('relu'))
 
-model.add(Conv2D(100, (3,3), padding='same'))       
-# model.add(MaxPooling2D(pool_size=2))
-# model.add(Dropout(0.3))
+# model.add(Conv2D(100, (2,2), padding='same'))   
+# model.add(Activation('relu'))
 
-
-model.add(Conv2D(300, (3,3), padding='same'))   
-# model.add(MaxPooling2D(pool_size=2))
-model.add(Dropout(0.3))
-
-
-model.add(Conv2D(100, (3,3), padding='same'))   
-# model.add(MaxPooling2D(pool_size=2))
-# model.add(Dropout(0.3))
-
-model.add(Conv2D(50, (3,3), padding='same'))   
+model.add(Conv2D(30, (2,2), padding='same'))   
+model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=2))
 # model.add(Dropout(0.3))
 
-
 model.add(Flatten())    
+# model.add(Dense(30, activation = 'relu'))    
+# model.add(Dense(20, activation = 'relu'))    
 model.add(Dense(10, activation='softmax'))    
 
 # model.summary()
 
 #3. 훈련
-# from keras.callbacks import EarlyStopping
-# early_stopping = EarlyStopping(monitor='loss', patience=5, mode='auto')
-model.compile(loss = 'categorical_crossentropy', optimizer='adam', metrics=['acc']) 
-model.fit(x_train,y_train,epochs=10,batch_size=128,verbose=1) #, callbacks=[early_stopping])
+from keras.callbacks import EarlyStopping
+early_stopping = EarlyStopping(monitor='loss', patience=5, mode='auto')
+model.compile(loss = 'binary_crossentropy', optimizer='adam', metrics=['acc']) 
+model.fit(x_train,y_train,epochs=17,batch_size=128,verbose=1)# callbacks=[early_stopping])
 
 
 #4. 평가, 예측
-loss, acc = model.evaluate(x_test, y_test, batch_size=1)
+loss, acc = model.evaluate(x_test, y_test, batch_size=32)
 print('loss : ', loss)
 print('acc : ', acc)
 # print(x_test)

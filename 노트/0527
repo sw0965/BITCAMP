@@ -1,1 +1,5 @@
 드롭아웃 각 레이어에 많은 노드중 하나를 지우는거
+
+
+negative dimension size caused by
+ subtracting 3 from 1 for 'conv2d_7/convolution' (op: 'Conv2D') with input shapes
