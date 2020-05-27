@@ -1,9 +1,3 @@
-import numpy as np
+a = ['소근소근']
 
-y_class = np.array([0, 1, 0, 1, 2]).reshape(-1, 1)
-print(y_class)
-print(y_class.shape)
-
-from sklearn.preprocessing import OneHotEncoder
-enc = OneHotEncoder()
-enc.fit(y_class)
+print(a)
