@@ -1,3 +1,4 @@
+'''
 import tensorflow as tf
 from keras.applications import Xception
 from keras.utils import multi_gpu_model
@@ -45,3 +46,4 @@ with tf.device('/cpu:0'):
 end = datetime.datetime.now()
 time_delta = end - start
 print('CPU 처리시간 : ', time_delta)
+'''
