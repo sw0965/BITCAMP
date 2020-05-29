@@ -19,7 +19,7 @@ print('x.shape :', x.shape)
 print('y.shape :', y.shape)
 # y = np.transpose(y)
 # print(y.shape)
-'''
+
 # train, test 분류
 x_train,x_test,y_train,y_test = train_test_split(x, y, random_state = 66, shuffle=True, train_size=0.7)
 
@@ -31,8 +31,9 @@ print('y_test.shape : ',y_test.shape)
 
 
 #데이터 전처리 1. 원핫인코딩
-y_train = np_utils.to_categorical(y_train)
-y_test = np_utils.to_categorical(y_test)
+# y_train = np_utils.to_categorical(y_train)
+# y_test = np_utils.to_categorical(y_test)
+
 print('y_train.shape :', y_train.shape) 
 print('y_test.shape :', y_test.shape) 
 
@@ -55,7 +56,7 @@ model.add(Dense(8))
 model.add(Dense(16))   
 model.add(Dense(8))   
 model.add(Dense(4))   
-model.add(Dense(342, activation='sigmoid'))    
+model.add(Dense(1, activation='sigmoid'))    
 
 model.summary()
 
@@ -106,4 +107,3 @@ plt.ylabel('acc')
 plt.xlabel('epoch')           
 plt.legend(loc = 'upper right')  
 plt.show()
-'''
