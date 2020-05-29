@@ -58,7 +58,7 @@ tb_hist = TensorBoard(log_dir='graph', histogram_freq=0,
 early_stopping = EarlyStopping(monitor='loss', patience=5, mode='auto') 
 
 model.compile(optimizer='adam', loss='mse', metrics=['acc'])
-hist = model.fit(x, y, epochs=1000, validation_split=0.2, batch_size=1, 
+hist = model.fit(x, y, epochs=10, validation_split=0.2, batch_size=1, 
                        verbose=2, callbacks=[early_stopping, tb_hist])
 #hist
 
@@ -77,7 +77,7 @@ plt.xlabel('epoch')            # x축 이름
 plt.legend(['train loss', 'test loss', 'train acc', 'test acc'])
 # plt.show()
 
-'''
+
 loss, acc = model.evaluate(x, y)
 
 y_predict = model.predict(x)
@@ -85,4 +85,3 @@ y_predict = model.predict(x)
 print('loss : ', loss)
 print('mse :', acc)
 print('y_predict :', y_predict)
-'''
