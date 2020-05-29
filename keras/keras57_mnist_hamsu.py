@@ -26,7 +26,7 @@ from keras.utils import np_utils
 y_train = np_utils.to_categorical(y_train)
 y_test = np_utils.to_categorical(y_test)
 print(y_train.shape)
-
+'''
 #데이터 전처리 2. 정규화
 x_train = x_train.reshape(60000, 28, 28, 1).astype('float32')/255
 x_test = x_test.reshape(10000, 28, 28, 1).astype('float32')/255
@@ -90,7 +90,7 @@ print('acc : ', acc)
 # onehotencording
 # 분류때 남자는 1 여자는 2일때 남자 + 남자 = 여자가 아니므로 onehotencording을 사용
 # 분류하는 갯수 만큼 shape가 늘어남 
-
+'''
 '''
 loss :  0.0074524702965347205
 acc :  0.9978694319725037

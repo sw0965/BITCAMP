@@ -32,7 +32,7 @@ print('x_test :',x_test.shape)
 #.3 모델구성
 
 input1  = Input(shape=(32,32,3))
-conv1   = Conv2D(20, (3, 3), activation='relu', strides=2 ,padding='same')(input1)
+conv1   = Conv2D(20, (3, 3), activation='relu', strides=2, padding='same')(input1)
 
 
 output1  = Flatten()                       (conv1)
