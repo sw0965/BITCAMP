@@ -17,6 +17,7 @@ print(x)
 print(y)
 print('x.shape :', x.shape)
 print('y.shape :', y.shape)
+'''
 # y = np.transpose(y)
 # print(y.shape)
 
@@ -107,3 +108,4 @@ plt.ylabel('acc')
 plt.xlabel('epoch')           
 plt.legend(loc = 'upper right')  
 plt.show()
+'''

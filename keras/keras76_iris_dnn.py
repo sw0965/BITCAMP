@@ -47,25 +47,25 @@ print(y_test.shape)   #(45, 3)
 
 model = Sequential()
 model.add(Dense(4, input_shape=(4,)))
-model.add(Dense(8))
-model.add(Dense(16))   
-model.add(Dense(8))   
-model.add(Dense(4))   
+model.add(Dense(16))
+model.add(Dense(64))   
+model.add(Dense(128))   
+model.add(Dense(128))   
 model.add(Dense(3, activation='softmax'))    
 
-model.summary()
+# model.summary()
 
 #.4 모델 훈련
 tb            = TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
-es            = EarlyStopping(monitor='acc', patience=2, mode='auto')
+es            = EarlyStopping(monitor='acc', patience=5, mode='auto')
 modelpath     = './model/{epoch:02d}-{val_acc:.4f}.hdf5'
 cp            = ModelCheckpoint(filepath=modelpath, monitor='val_acc', save_best_only=True, mode='auto')
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
-hist          = model.fit(x_train, y_train, validation_split=0.2, epochs=5, batch_size=128, verbose=1, callbacks=[es,cp,tb])
+hist          = model.fit(x_train, y_train, validation_split=0.2, epochs=16, batch_size=16, verbose=1, callbacks=[es,cp,tb])
 # D:\Study\study\graph>cd tensorboard --logdir=.(텐서보드 확인 cmd에서)
 
 #.5 평가 예측
-loss,acc = model.evaluate(x_test, y_test, batch_size=32)
+loss,acc = model.evaluate(x_test, y_test, batch_size=16)
 print('loss : ', loss)
 print('acc : ',acc)
 loss_acc = loss,acc
