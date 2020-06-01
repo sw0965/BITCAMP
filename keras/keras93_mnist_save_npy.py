@@ -26,5 +26,5 @@ print(y_train.shape)
 
 np.save('./data/mnist_train_x.npy', arr=x_train)
 np.save('./data/mnist_train_y.npy', arr=y_train)
-np.save('./data/mnist_test_x.npy',  arr=x_train)
-np.save('./data/mnist_test_y.npy',  arr=y_train)
+np.save('./data/mnist_test_x.npy',  arr=x_test)
+np.save('./data/mnist_test_y.npy',  arr=y_test)

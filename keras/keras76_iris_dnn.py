@@ -53,7 +53,7 @@ model.add(Dense(128))
 model.add(Dense(128))   
 model.add(Dense(3, activation='softmax'))    
 
-model.save('./model/sample/iris/model_iris.h5')
+# model.save('./model/sample/iris/model_iris.h5')
 # model.summary()
 
 #.4 모델 훈련
@@ -64,7 +64,7 @@ cp            = ModelCheckpoint(filepath=modelpath, monitor='val_acc', save_best
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 hist          = model.fit(x_train, y_train, validation_split=0.2, epochs=10000, batch_size=16, verbose=1, callbacks=[es,cp,tb])
 # D:\Study\study\graph>cd tensorboard --logdir=.(텐서보드 확인 cmd에서)
-model.save_weights('./model/sample/iris/weight_iris.h5')
+# model.save_weights('./model/sample/iris/weight_iris.h5')
 
 #.5 평가 예측
 loss,acc = model.evaluate(x_test, y_test, batch_size=16)

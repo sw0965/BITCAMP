@@ -76,7 +76,7 @@ model.add(Dropout(0.3))
 model.add(Dense(10, activation='softmax'))    
 
 # model.summary()
-model.save('./model/sample/mnist/model_mnist.h5')
+# model.save('./model/sample/mnist/model_mnist.h5')
 #3. 훈련
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 early_stopping = EarlyStopping(monitor='acc', patience=3, mode='auto')
@@ -84,7 +84,7 @@ modelpath = './model/sample/mnist/mnist-{epoch:02d}-{val_loss:.4f}.hdf5'
 chekpoint = ModelCheckpoint(filepath = modelpath, monitor='val_loss', save_best_only=True, save_weights_only=False, verbose=1)
 model.compile(loss = 'categorical_crossentropy', optimizer='adam', metrics=['acc']) 
 model.fit(x_train,y_train,epochs=1000,batch_size=128,validation_split=0.3,verbose=1, callbacks=[early_stopping, chekpoint])
-model.save_weights('./model/sample/mnist/weight_mnist.h5')
+# model.save_weights('./model/sample/mnist/weight_mnist.h5')
 
 #4. 평가, 예측
 loss, acc = model.evaluate(x_test, y_test, batch_size=64)

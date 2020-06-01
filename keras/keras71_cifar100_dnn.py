@@ -41,7 +41,7 @@ dens4    = Dense(100)(dens3)
 
 model   = Model(inputs=input1, outputs=dens4)
 
-model.save('./model/sample/cifar100/model_cifal100.h5')
+# model.save('./model/sample/cifar100/model_cifal100.h5')
 
 model.summary()
 
@@ -53,7 +53,7 @@ cp            = ModelCheckpoint(filepath=modelpath, monitor='val_acc', save_best
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 hist          = model.fit(x_train, y_train, validation_split=0.2, epochs=1000, batch_size=128, verbose=1, callbacks=[es,cp,tb])
 # D:\Study\study\graph>cd tensorboard --logdir=.(텐서보드 확인 cmd에서)
-model.save_weights('./model/sample/cifar100/weight_cifar100.h5')
+# model.save_weights('./model/sample/cifar100/weight_cifar100.h5')
 
 #.5 평가 예측
 loss,acc = model.evaluate(x_test, y_test, batch_size=32)

@@ -33,7 +33,7 @@ model.add(Dense(784))
 model.add(Dropout(0.3))
 model.add(Dense(10, activation='softmax'))
 
-model.save('./model/sample/fashion_mnist/model_fashion.h5')
+# model.save('./model/sample/fashion_mnist/model_fashion.h5')
 
 model.summary()
 
@@ -44,7 +44,7 @@ early_stopping = EarlyStopping(monitor='acc', patience=2, mode='auto')
 model.compile(loss = 'categorical_crossentropy', optimizer='adam', metrics=['acc']) 
 model.fit(x_train,y_train,epochs=1000,batch_size=128,verbose=1 ,validation_split=0.3 ,callbacks=[early_stopping, checkpoint])
 
-model.save_weights('./model/sample/fashion_mnist/weight_fashion.h5')
+# model.save_weights('./model/sample/fashion_mnist/weight_fashion.h5')
 
 #4. 평가, 예측
 loss, acc = model.evaluate(x_test, y_test, batch_size=32)

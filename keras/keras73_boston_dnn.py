@@ -51,7 +51,7 @@ model.add(Dense(10, activation='relu'))
 model.add(Dense(1, activation='relu'))
 
 model.summary()
-model.save('./model/sample/boston/model_boston.h5')
+# model.save('./model/sample/boston/model_boston.h5')
 # 훈련
 
 # early_stopping = EarlyStopping(monitor='acc', patience=2, mode='auto')
@@ -64,7 +64,7 @@ cp            = ModelCheckpoint(filepath=modelpath, monitor='val_mse', save_best
 model.compile(loss='mse', optimizer='adam', metrics=['mse'])
 hist          = model.fit(x_train, y_train, validation_split=0.2, epochs=1000, batch_size=16, verbose=1, callbacks=[es,cp])
 # D:\Study\study\graph>cd tensorboard --logdir=.(텐서보드 확인 cmd에서)
-model.save_weights('./model/sample/boston/weight_boston.h5')
+# model.save_weights('./model/sample/boston/weight_boston.h5')
 
 
 

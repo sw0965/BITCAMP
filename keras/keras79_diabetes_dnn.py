@@ -59,7 +59,7 @@ model.add(Dense(4))
 model.add(Dense(1, activation='sigmoid'))    
 
 model.summary()
-model.save('./model/sample/diabets/model_diabets.h5')
+# model.save('./model/sample/diabets/model_diabets.h5')
 
 #.4 모델 훈련
 tb            = TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
@@ -69,7 +69,7 @@ cp            = ModelCheckpoint(filepath=modelpath, monitor='val_acc', save_best
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
 hist          = model.fit(x_train, y_train, validation_split=0.2, epochs=1000, batch_size=128, verbose=1, callbacks=[es,cp,tb])
 # D:\Study\study\graph>cd tensorboard --logdir=.(텐서보드 확인 cmd에서)
-model.save_weights('./model/sample/diabets/weight_diabets.h5')
+# model.save_weights('./model/sample/diabets/weight_diabets.h5')
 
 #.5 평가 예측
 loss,acc = model.evaluate(x_test, y_test, batch_size=32)
