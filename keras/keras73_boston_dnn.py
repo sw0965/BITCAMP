@@ -6,7 +6,7 @@ from   sklearn.metrics          import mean_squared_error, r2_score
 from   keras.utils              import np_utils
 from   keras.models             import Sequential
 from   keras.layers             import Dense, Dropout
-from   keras.callbacks          import EarlyStopping
+from   keras.callbacks          import EarlyStopping, ModelCheckpoint
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -51,12 +51,20 @@ model.add(Dense(10, activation='relu'))
 model.add(Dense(1, activation='relu'))
 
 model.summary()
-
+model.save('./model/sample/boston/model_boston.h5')
 # 훈련
 
 # early_stopping = EarlyStopping(monitor='acc', patience=2, mode='auto')
-model.compile(loss = 'mse', optimizer='adam', metrics=['mse']) 
-model.fit(x_train,y_train,epochs=1000,batch_size=1,verbose=1 ,validation_split=0.4)# ,callbacks=[early_stopping])
+# model.compile(loss = 'mse', optimizer='adam', metrics=['mse']) 
+# model.fit(x_train,y_train,epochs=1000,batch_size=1,verbose=1 ,validation_split=0.4)# ,callbacks=[early_stopping])
+
+es            = EarlyStopping(monitor='mse', patience=2, mode='auto')
+modelpath     = './model/sample/boston/boston-{epoch:02d}-{val_mse:.4f}.hdf5'
+cp            = ModelCheckpoint(filepath=modelpath, monitor='val_mse', save_best_only=True, mode='auto')
+model.compile(loss='mse', optimizer='adam', metrics=['mse'])
+hist          = model.fit(x_train, y_train, validation_split=0.2, epochs=1000, batch_size=16, verbose=1, callbacks=[es,cp])
+# D:\Study\study\graph>cd tensorboard --logdir=.(텐서보드 확인 cmd에서)
+model.save_weights('./model/sample/boston/weight_boston.h5')
 
 
 

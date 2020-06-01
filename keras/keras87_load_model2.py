@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-from keras.models import Sequential, Input
-from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout
 from keras.datasets import mnist  #datasets  = 케라스에 있는 예제파일들
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -43,8 +43,14 @@ print(y_test.shape)
 
 from keras.models import load_model
 
-input1 = load_model('./model/model_test01.h5')
-model = (inputs = input1, outputs = )
+model = load_model('./model/model_test01.h5')
+model.add(Dense(50 , name='dense1_1' ,activation='relu'))
+model.add(Dropout(0.3))
+model.add(Dense(10 , name='dense1_2' ,activation='relu'))
+model.add(Dropout(0.3))
+model.add(Dense(10 , name='dense1_3', activation='softmax'))
+
+
 
 model.summary()
 
@@ -59,15 +65,23 @@ print('acc : ', acc)
 y_predict = model.predict(x_test)
 
 
+
+
 y_pre  = np.argmax(y_predict,axis=-1)
 y_test = np.argmax(y_test,axis=-1)
 
 print(f"y_test[0:20]:{y_test[0:20]}")
 print(f"y_pre[0:20]:{y_pre[0:20]}")
+
 # print(y_test)
 # print(y_predict)
 
-'''
+''' load 파일
 loss :  0.18315951786566817
 acc :  0.9811999797821045
+'''
+
+''' 레이어 3개 추가
+loss :  2.3136667798757555
+acc :  0.09780000150203705
 '''

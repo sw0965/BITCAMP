@@ -46,7 +46,7 @@ print(y_test.shape)   #(45, 3)
 # 모델구성
 
 model = Sequential()
-model.add(Conv2D(10, (3,3), padding='same', input_shape=(2,2,1))) 
+model.add(Conv2D(10, (2,2), padding='same', input_shape=(2,2,1))) 
 model.add(Flatten())
 model.add(Dense(8))
 model.add(Dense(16))   

@@ -1,6 +1,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-from keras.models import Sequential, Input
+from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
 from keras.datasets import mnist  #datasets  = 케라스에 있는 예제파일들
 
@@ -43,8 +43,7 @@ print(y_test.shape)
 
 from keras.models import load_model
 
-input1 = load_model('./model/model_test01.h5')
-model = (inputs = input1, outputs = )
+model = load_model('./model/model_test01.h5')
 
 model.summary()
 
