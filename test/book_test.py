@@ -14,8 +14,8 @@ from   keras.layers.merge      import concatenate
 
 samsungE = np.load('./data/samE.npy', allow_pickle=True)
 hite     = np.load('./data/hite.npy', allow_pickle=True)
-hite     = hite[:-1,:]
-samsungE = samsungE[:-1,:]
+ht     = hite[:-1,:]
+ss = samsungE[:-1,:]
 
 
 def split_xy5(dataset, time_steps, y_column):

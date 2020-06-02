@@ -32,7 +32,7 @@ print(x1.shape)  #254 5
 print(x2.shape)  #254 5
 print(y.shape)  #254 1
 # print(y2.shape)  #254 1
-
+y = y.reshape(254, 2)
 #데이터 트레인 테스트 분류
 x1_train, x1_test, x2_train, x2_test, y_train, y_test  = train_test_split(x1, x2, y, train_size=0.5)
 
@@ -44,7 +44,7 @@ print(y_train.shape)  #(127, 1)
 print(y_test.shape)   #(127, 1)
 # print(y2_train.shape)  #(127, 1)
 # print(y2_test.shape)   #(127, 1)
-'''
+
 #데이터 리쉐이프
 x1_train = x1_train.reshape(127, 5, 1)
 x2_train = x2_train.reshape(127, 5, 1)
@@ -72,14 +72,10 @@ middle1    = Dense(70, name='mide2')   (middle1)
 output1    = Dense(50)                 (middle1) 
 output1_2  = Dense(30)                 (output1)
 activation = Activation('linear')      (output1_2)
-output1_3  = Dense(1)                  (activation)
+output1_3  = Dense(2)                  (activation)
 
-output2    = Dense(50)                    (middle1)
-output2_2  = Dense(30)                  (output2)
-activation = Activation('linear')      (output2_2)
-output2_3  = Dense(1)                   (activation)
 
-model      = Model(inputs = [input1, input2], outputs = [output1_3, output2_3])
+model      = Model(inputs = [input1, input2], outputs = output1_3)
 
 model.summary()
 
@@ -89,7 +85,7 @@ cp        = ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_on
 es        = EarlyStopping(monitor='loss', patience=8, mode='auto')
 model.compile(loss = 'mse', optimizer='adam', metrics=['mse']) 
 model.fit([x1_train, x2_train],y_train, 
-                      epochs=100, batch_size=32, validation_split=0.2, 
+                      epochs=1000, batch_size=32, validation_split=0.2, 
                       verbose=1, callbacks=[es, cp])
 
 
@@ -101,45 +97,24 @@ print('loss : ', loss)
 print('mse : ', mse)
 
 
-y1_predict, y2_predict = model.predict([x1_test, x2_test])
+y_predict = model.predict([x1_test, x2_test])
 
 
 #RMSE 구하기 #낮을수록 좋다.
 def RMSE(y_test,y_predict):
     return np.sqrt(mean_squared_error(y_test,y_predict))
-RMSE1 = RMSE(y1_test, y1_predict)
-RMSE2 = RMSE(y2_test, y2_predict)
-print("RMSE : ", (RMSE1 + RMSE2)/2)
+RMSE1 = RMSE(y_test, y_predict)
+print("RMSE : ", RMSE1)
 
 #R2 구하기 # 1에 근접할수록 좋다.
-r2_1 = r2_score(y1_test,y1_predict)
-r2_2 = r2_score(y2_test,y2_predict)
-print("R2 : ", (r2_1+r2_2)/2)
+r2 = r2_score(y_test,y_predict)
+print("R2 : ", r2)
 
 
 
 
-#그래프
-loss     = hist.history['loss']
-val_loss = hist.history['val_loss']
-# metrics      = hist.history['metrics']
-# val_metrics  = hist.history['val_metrics']
 
-
-plt.figure(figsize=(10, 6)) 
-
-plt.subplot(2, 1, 1) 
-plt.plot(hist.history['loss'], marker='.', c='red', label='loss')  
-plt.plot(hist.history['val_loss'], marker='.', c='blue', label='val_loss') 
-plt.grid() 
-plt.title('loss')        
-plt.ylabel('loss')    
-plt.xlabel('epoch')          
-plt.legend(loc = 'upper left')  
-
-plt.show()
 
 for i in range(5):
-    print('종가 : ', y1_test[i], '/ 예측가 : ', y1_predict[i])
+    print('시가 : ', y_test[i], '/ 예측가 : ', y_predict[i])
 
-'''

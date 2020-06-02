@@ -4,14 +4,15 @@ import pandas as pd
 
 df1 = pd.read_csv('./data/csv/SamsungE.csv', index_col=0, header=0, encoding='cp949', sep=',')#,keep_default_na=False)
 df1 = df1.dropna(how='all')
+
 print('samsung : ',df1)
 print('df1 : ',df1.shape)  #(700, 1)
 
 
 df2 = pd.read_csv('./data/csv/Hite.csv', index_col=0, header=0, encoding='cp949', sep=',')
 df2 = df2.dropna(how='all')
-
 df2 = df2.fillna('51,000')
+
 print('hite : ',df2)
 print('df2 : ',df2.shape)  #(720, 5)
 
