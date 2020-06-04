@@ -27,7 +27,13 @@ def split_x(seq, size):
     return np.array(aaa)   
 size = 6
 
-
+def split_y(seq, size):                          
+    aaa = []                                        
+    for i in range(len(seq) - size + 1):            
+        subset = seq[i : (i+size)]                  
+        aaa.append([j for j in subset])                                                          
+    return np.array(aaa)   
+size = 5
 ##################################  데이터 불러오기  ######################################
 
 
@@ -40,10 +46,11 @@ print(hite.shape)    #(509, 5)
 ############################  hite를 train,test 하기위해 슬라이싱  ############################
 
 
-sli_hite = hite[5:510, :4]
-print(sli_hite.shape) #(504, 4)
+sli_hite = (split_y(hite, size))
+print('sli_hite :', sli_hite)
+print('sli_hite.shape :', hite.shape) #(509, 5)
 
-
+'''
 #####################################  sam 전처리  ###########################################
 
 
@@ -115,14 +122,12 @@ print(x2_train_hite.shape) #(403, 4, 1)
 # pca_hite = pca.transform(st_hite)
 # print('pca_hite :', pca_hite)
 # print('pca_hite.shape :', pca_hite.shape) #(509, 1)
-'''
 
 
 
-'''
-x2_train_hite = (split_x(st_train_hite, size))
-print('sp_hite :', x2_train_hite)
-print('sp_hite.shape :', x2_train_hite.shape) #(504, 6, 1)
+
+
+
 '''
 ################################        test값 reshape       ###################################
 
@@ -190,3 +195,4 @@ print(y_predict)
 
 ###############################################################################################
 # 슬라이싱할때 일자가 몇개 짤려서 서로 일자가 다름 내일 맞춰주기.
+'''
