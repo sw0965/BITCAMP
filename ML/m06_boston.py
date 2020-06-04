@@ -31,10 +31,10 @@ x_test  = scaler.transform(x_test)
 
 
 # 모델    
-model = SVC()                    
+# model = SVC()                    
 # model = LinearSVC()             
 # model = KNeighborsClassifier()   
-# model = KNeighborsRegressor()    
+model = KNeighborsRegressor()    
 # model = RandomForestClassifier()  
 # model = RandomForestRegressor()   
 
