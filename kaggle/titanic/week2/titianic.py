@@ -682,38 +682,50 @@ Name: Survived, dtype: int64
 print(train.shape)      #(981, 10)
 print(test.shape)       #(418, 10)
 print(train_data.shape) #(891, 9)
-
+x = train
+y = test
+x_predict = train_data
 ############################################# 모델링 #############################################
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing    import StandardScaler
 
 import numpy as np
-from sklearn.model_selection import KFold
-from sklearn.model_selection import cross_val_score
-fold = KFold(n_splits=10, shuffle=True, random_state=0)
-model = RandomForestClassifier()
+from sklearn.model_selection import KFold, RandomizedSearchCV, train_test_split, cross_val_score
 
-model.fit(train_data, target)
+# x_train, x_test, y_train, y_test = train_test_split(x, y,  test_size=0.2)
 
-# passengerId는 많이 필요가 없으니 드랍
-test_data = test.drop("PassengerId", axis=1).copy()
-predict = model.predict(test_data)
-submission = pd.DataFrame({"PassengerId": test["PassengerId"], "Survived": predict})
+# scaler = StandardScaler()
+# scaler.fit(x_train)   
+# x_train = scaler.transform(x_train)
+# x_test = scaler.transform(x_test)
+# x_predict = scaler.transform(x_predict)
+
+#. 트레인 테스트 분류
+parameters = {'n_estimators' : [10], 'max_depth' : [1, 10, 100, 1000],'max_features':['auto'],
+'max_leaf_nodes':[None], 'class_weight':[None], 'criterion':['gini'],
+'min_impurity_decrease':[0.0], 'min_impurity_split' : [None],
+'min_samples_leaf':[1], 'min_samples_split':[2], 'warm_start':[False],
+'min_weight_fraction_leaf': [0.0],'bootstrap':[True], 'n_jobs':[None],
+'oob_score':[False], 'random_state':[None], 'verbose':[0]}
+    
+
+kfold = KFold(n_splits=5, shuffle=True)
+model = RandomizedSearchCV(RandomForestClassifier(), parameters, cv=kfold, n_jobs=-1)# cv= 5라고 써도됌 
+
+model.fit(x, y)
+
+print("최적의 매개변수 : ", model.best_estimator_)
+
+''' 
+#내 파라미터중 제일 좋은거 찾았을때 밑에 나온게 결괏값
+'''
 
 
-# csv 저장
-submission.to_csv('submission_test1.csv', index=False)
-submission = pd.read_csv('submission_test1.csv')
-print(submission.head())
-
-score = model.score(test_data, predict) #evaluate 같은거
-print('score = ', score)
-# print(y_predict)
-acc = accuracy_score(test_data, predict)
-print("acc = ", acc)
+y_pred = model.predict(x_predict)
+print("최종 정답률 : ", accuracy_score(y, y_pred)) # 뭐가 acc : 1이 나온지 모름
