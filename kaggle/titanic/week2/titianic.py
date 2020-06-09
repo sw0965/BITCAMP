@@ -682,9 +682,7 @@ Name: Survived, dtype: int64
 print(train.shape)      #(981, 10)
 print(test.shape)       #(418, 10)
 print(train_data.shape) #(891, 9)
-x = train
-y = test
-x_predict = train_data
+
 ############################################# 모델링 #############################################
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -707,18 +705,17 @@ from sklearn.model_selection import KFold, RandomizedSearchCV, train_test_split,
 # x_predict = scaler.transform(x_predict)
 
 #. 트레인 테스트 분류
-parameters = {'n_estimators' : [10], 'max_depth' : [1, 10, 100, 1000],'max_features':['auto'],
-'max_leaf_nodes':[None], 'class_weight':[None], 'criterion':['gini'],
-'min_impurity_decrease':[0.0], 'min_impurity_split' : [None],
-'min_samples_leaf':[1], 'min_samples_split':[2], 'warm_start':[False],
-'min_weight_fraction_leaf': [0.0],'bootstrap':[True], 'n_jobs':[None],
-'oob_score':[False], 'random_state':[None], 'verbose':[0]}
+parameters = {'C':[1.0], 'kernel':['rbf'], 'degree':[3], 'gamma':['auto_deprecated'], 
+             'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200], 'class_weight':[None], 
+             'verbose':[False], 'max_iter':[-1], 'decision_function_shape':['ovr'], 'random_state':[None]}
+    
+
     
 
 kfold = KFold(n_splits=5, shuffle=True)
-model = RandomizedSearchCV(RandomForestClassifier(), parameters, cv=kfold, n_jobs=-1)# cv= 5라고 써도됌 
+model = RandomizedSearchCV(SVC(), parameters, cv=kfold, n_jobs=-1)# cv= 5라고 써도됌 
 
-model.fit(x, y)
+model.fit(train, test)
 
 print("최적의 매개변수 : ", model.best_estimator_)
 
@@ -727,5 +724,5 @@ print("최적의 매개변수 : ", model.best_estimator_)
 '''
 
 
-y_pred = model.predict(x_predict)
-print("최종 정답률 : ", accuracy_score(y, y_pred)) # 뭐가 acc : 1이 나온지 모름
+# y_pred = model.predict(test)
+print("최종 정답률 : ", accuracy_score(train, test)) # 뭐가 acc : 1이 나온지 모름
