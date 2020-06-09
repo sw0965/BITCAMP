@@ -17,7 +17,7 @@ print(y.shape)           # 2800 4
 print(x_predict.shape)   # 700 375 4
 
 x = x.reshape(2800, 1500)
-x_predict = x_predict.reshape(262500, 4)
+x_predict = x_predict.reshape(700, 1500)
 
 
 
@@ -26,7 +26,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle
 
 
 # 그리드/랜덤 서치에서 사용할 매개 변수
-parameters = [{'R__n_estimators' : [100, 200],'R__min_samples_split':[10, 100], 
+parameters = [{'R__n_estimators' : [100, 100],'R__min_samples_split':[10, 100], 
             'R__max_leaf_nodes' :[10, 100], 'R__max_depth' : [10, 100],'R__min_samples_leaf' : [10, 100]}]
 
 
@@ -34,7 +34,7 @@ parameters = [{'R__n_estimators' : [100, 200],'R__min_samples_split':[10, 100],
 
 pipe = Pipeline([("scaler", StandardScaler()), ('R', RandomForestRegressor())])
 
-model = RandomizedSearchCV(pipe, parameters, cv=5)
+model = RandomizedSearchCV(pipe, parameters, cv=5, n_jobs=-1)
 
 #3. 훈련 
 model.fit(x_train, y_train)

@@ -1,7 +1,7 @@
 import pandas as pd 
 import numpy as np
 from keras.models import Sequential
-from keras.layers import LSTM, Dense, Conv1D, MaxPooling1D, Flatten
+from keras.layers import LSTM, Dense, Conv1D, MaxPooling1D, Flatten, Dropout
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from keras.utils import np_utils
@@ -77,7 +77,9 @@ model.add(Flatten())
 model.add(Dense(64))
 model.add(Dense(128))
 model.add(Dense(356))
+model.add(Dropout(0.4))
 model.add(Dense(128))
+model.add(Dropout(0.2))
 model.add(Dense(64))
 model.add(Dense(32))
 model.add(Dense(16))
@@ -88,10 +90,22 @@ model.add(Dense(4))
 
 es = EarlyStopping(monitor='loss', patience=5, mode='auto')
 model.compile(loss= 'mse', optimizer='adam')
-model.fit(x_train, y_train, epochs=10000, callbacks=[es])
+model.fit(x_train, y_train, epochs=39, callbacks=[es])
 
 loss = model.evaluate(x_test,y_test)
 print('loss : ', loss)
 
-submission = model.predict(x_predict)
-print(submission)
+
+
+y_pred = model.predict(x_predict)
+print(y_pred)
+
+submissions = pd.DataFrame({
+    "id": range(2800,3500),
+    "X": y_pred[:,0],
+    "Y": y_pred[:,1],
+    "M": y_pred[:,2],
+    "V": y_pred[:,3]
+})
+
+submissions.to_csv('./comp3_sub4.csv', index = False)
