@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split, RandomizedSearchCV, GridSearchCV
 from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+
 
 #1. 데이터
 iris = load_iris()
@@ -13,9 +15,9 @@ print(y.shape)  #(150, )
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle=True, random_state=43)
 
 # 그리드/랜덤 서치에서 사용할 매개 변수
-parameters = [{"svc__C" : [1, 10, 100, 1000], "svc__kernel":['linear']},
-              {"svc__C" : [1, 10, 100], "svc__kernel":['rbf'], "svc__gamma" :[0.001, 0.0001]},
-              {"svc__C" : [1, 100, 1000], "svc__kernel":['sigmoid'], "svc__gamma" :[0.001, 0.0001]}] #20가지가 가능한 파라미터
+parameters = [{"randomforestclassifier__n_jobs" : [1]}
+              
+              ] #20가지가 가능한 파라미터
 
 
 #그리드/랜덤 서치때 파라미터 키의 변수명을 안넣고 파라미터명만 넣었음
@@ -26,7 +28,7 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 # pipe = Pipeline([("scaler", MinMaxScaler()), ('svm', SVC())])  # 이건 이름 명시가 필요
-pipe = make_pipeline(MinMaxScaler(), SVC()) # make_pipeline 이건 전처리랑 모델만
+pipe = make_pipeline(MinMaxScaler(), RandomForestClassifier()) # make_pipeline 이건 전처리랑 모델만
 
 
 model = RandomizedSearchCV(pipe, parameters, cv=5)
