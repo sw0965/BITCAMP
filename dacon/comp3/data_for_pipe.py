@@ -14,35 +14,39 @@ train_target = pd.read_csv('./data/dacon/KAERI/train_target.csv', header=0, inde
 test_features = pd.read_csv('./data/dacon/KAERI/test_features.csv', header=0, index_col=0)
 test_target = pd.read_csv('./data/dacon/KAERI/sample_submission.csv', header=0, index_col=0)
 print(test_target.shape) #700 4
-'''
+
+
+ # 각 데이터 칼럼들
 x = train_features          # time s1 s2 s3 s4
 y = train_target            # x  y  m   v
 x_predict = test_features   # time s1 s2 s3 s4
-y_predict = test_target     #
+y_predict = test_target     # x  y  m   v
 
 print(x.shape)         #1050000, 5
 print(y.shape)         #2800, 4
 print(x_predict.shape) #262500,5
 # print(x.shape)
-x = x.values        #array
-y = y.values        #array
+
+# numpy로 변형
+x = x.values                #array
+y = y.values                #array
 x_predict=x_predict.values  #array
 
-
+# x_predict 열 맞춰주기 (time 제거)
 x_predict = x_predict[:,1:]
 x_predict = x_predict.reshape(700,375,4)
-
-# 열 맞춰주기 슬라이싱 타임 제거
+# x 도 열 맞춰주기 (time 제거)
 x = x[:,1:]
 print(x.shape) # 1050000, 4
 
 
-
+# conv1d를 사용하기 위해 3차원으로 변형
 x = x.reshape(2800,375,4)
 
 print(x.shape) #2800, 375, 4
 print(y.shape) # 2800, 4
 
+#train test split으로 x, y 분리
 # x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
 # print(x_train.shape)  # 2240, 375, 4
@@ -53,8 +57,7 @@ print(y.shape) # 2800, 4
 
 
 
-
+# npy 로 저장
 np.save('./data/dacon/KAERI/x_train_pipe.npy', arr=x)
 np.save('./data/dacon/KAERI/x_test_pipe.npy', arr=y)
 np.save('./data/dacon/KAERI/x_pred_pipe.npy', arr=x_predict)
-'''
