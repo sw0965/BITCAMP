@@ -26,15 +26,33 @@ print(y_predict.shape) # 10000 4
 # test = test.interpolate()
 # print(test.isnull().sum()[test.isnull().sum().values > 0])
 x_train = train.iloc[:,:71]
-print(x_train.head())
+# print(x_train.head())
 y_train = train.iloc[:,71:]
-print(y_train.head())
+# print(y_train.head())
 
-plt.title('FUCKING')
-plt.plot(x_train)
-plt.xticks(x_train.ndray[:,])
-plt.yticks(10000)
-plt.show()
+src_train = x_train.iloc[:,1:36]
+# print(src_train.info())
+print(src_train.shape)
+dst_train = x_train.iloc[:,36:71]
+# print(dst_train.info())
+
+
+for i in src_train():
+    a = 1
+    src_train[:,i]
+    src_train[:,i+a]
+
+
+plt.plot()
+
+
+# np.save('./data/dacon/bio/dst.npy', arr=dst_train)
+# np.save('./data/dacon/bio/src.npy', arr=src_train)
+scaler = RobustScaler()
+scaler.fit(src_train)
+src_train = scaler.transform(src_train)
+
+print(src_train.shape)
 '''
 # Nan 값 처리
 train = train.fillna(method='bfill')
@@ -54,11 +72,8 @@ print('train_non : ',train.isnull().sum()[train.isnull().sum().values > 0])
 # train = train.fillna(train.mean())
 # print(train.head(10))
 
-
-# train.filter(regex='_src$',axis=1).head(0).T.plot()
-# plt.show()
-train.filter(regex='_dst$',axis=1).head(6).T.plot()
-plt.show()
-test.filter(regex='_dst$',axis=1).head(6).T.plot()
-plt.show()
 '''
+# train.filter(regex='_src$',axis=1).head(0).T.plot()
+# # plt.show()
+# src_train.filter(regex='_src$',axis=1).head(8).T.plot()
+# plt.show()
