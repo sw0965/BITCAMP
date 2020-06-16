@@ -67,7 +67,7 @@ model.add(Dense(4, activation='softmax'))
 
 model.summary()
 
-
+'''
 # 훈련
 modelpath = './mini_project/pro_es_data/-{epoch:02d}-{val_loss:.4f}.hdf5'
 checkpoint = ModelCheckpoint(filepath = modelpath, monitor='val_loss', save_best_only=True, save_weights_only=False, verbose=1)
@@ -83,7 +83,7 @@ model.save('./mini_project/model_save/model.h5')
 loss, acc = model.evaluate(x_test, y_test)
 print('loss : ', loss)
 print('acc : ', acc)
-
+'''
 '''
 
 loss = hist.history['loss']
@@ -115,6 +115,7 @@ plt.legend(['acc', 'val_acc'])
 
 plt.show()
 '''
+'''
 # print(x_predict)
 y_predict = model.predict(x_predict)
 y_predict = np.argmax(y_predict,axis=-1)
@@ -138,3 +139,4 @@ for i in y_predict:
     elif i == 3:
         print('파인애플 입니다.')
         print('')
+'''
