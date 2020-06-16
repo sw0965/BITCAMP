@@ -31,7 +31,7 @@ x_predict = x_predict.reshape(20, 30000)
 
 x_train = x_train/255
 x_test = x_test/255
-
+x_predict = x_predict/255
 # 스케일러
 scaler = StandardScaler()
 scaler.fit(x_train)
@@ -45,6 +45,7 @@ x_train = x_train.reshape(128, 100, 100, 3)
 x_test = x_test.reshape(32, 100, 100, 3)
 x_predict = x_predict.reshape(20, 100, 100, 3)
 
+np.save('./data/mini_project/x_predict_scaler.npy', x_predict)
 
 # 모델링
 model = Sequential()
@@ -67,28 +68,31 @@ model.add(Dense(4, activation='softmax'))
 model.summary()
 
 
-
+# 훈련
 modelpath = './mini_project/pro_es_data/-{epoch:02d}-{val_loss:.4f}.hdf5'
 checkpoint = ModelCheckpoint(filepath = modelpath, monitor='val_loss', save_best_only=True, save_weights_only=False, verbose=1)
 early_stopping = EarlyStopping(monitor='loss', patience=5, mode='auto')
 model.compile(loss = 'categorical_crossentropy', optimizer='adam', metrics=['acc']) 
-hist = model.fit(x_train,y_train,epochs=23,batch_size=32, verbose=1 ,validation_split=0.2 ,callbacks=[checkpoint,early_stopping])
+hist = model.fit(x_train, y_train, epochs=35, batch_size=32, verbose=1, validation_split=0.2) #, callbacks=[checkpoint,early_stopping])
+
+#모델 저장
+model.save('./mini_project/model_save/model.h5')
 
 
-loss, acc = model.evaluate(x_test, y_test,)
+# 평가
+loss, acc = model.evaluate(x_test, y_test)
 print('loss : ', loss)
 print('acc : ', acc)
 
+'''
 
 loss = hist.history['loss']
 val_loss = hist.history['val_loss']
 acc = hist.history['acc']
 val_acc = hist.history['val_acc']
 
-
-
-
-plt.figure(figsize=(10, 6)) #가로세로 길이 그래프설정
+# 시각화
+plt.figure(figsize=(10, 6)) 
 
 plt.subplot(2, 1, 1) 
 plt.plot(hist.history['loss'], marker='.', c='red', label='loss')
@@ -110,3 +114,27 @@ plt.xlabel('epoch')
 plt.legend(['acc', 'val_acc'])
 
 plt.show()
+'''
+# print(x_predict)
+y_predict = model.predict(x_predict)
+y_predict = np.argmax(y_predict,axis=-1)
+print(y_predict)
+print('')
+
+# loss :  0.16387484967708588
+# acc :  0.96875
+
+
+for i in y_predict:
+    if i == 0:
+        print('사과 입니다')
+        print('')
+    elif i == 1:
+        print('바나나 입니다') 
+        print('')
+    elif i == 2:
+        print('포도 입니다.')
+        print('')
+    elif i == 3:
+        print('파인애플 입니다.')
+        print('')

@@ -56,7 +56,7 @@ print(y.shape)
 np.save('./data/mini_project/x_data.npy', x)
 np.save('./data/mini_project/y_data.npy', y)
 
-
+'''
 
 # x_predict 만들기
 
@@ -82,4 +82,3 @@ np.save('./data/mini_project/x_predict.npy', x_predict)
 
 
 
-'''
