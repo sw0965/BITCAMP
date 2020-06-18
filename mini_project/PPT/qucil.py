@@ -60,11 +60,12 @@ print('acc : ', acc)
 
 
 # y_predict 대입
-y_predict = model.predict(x_predict)
+y_predict = model.predict(x_test)
+print(y_predict)
+'''
 y_predict = np.argmax(y_predict,axis=-1)
 print(' 예측한 과일 : ',y_predict)  
 print('')
-
 
 
 for i in y_predict:
@@ -108,3 +109,4 @@ for i in range(len(cnt)):
 
 print(f'총 가격은 {all_prices}원 이다.')
 
+'''

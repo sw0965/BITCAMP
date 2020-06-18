@@ -30,16 +30,17 @@ for idx, cat in enumerate(categories):
         img = img.convert('RGB')
         img = img.resize((image_w, image_h))
         data = np.array(img)
+        print(data.dtype)
         x.append(data)
         y.append(label)
-
+        
+'''
 x = np.array(x)  # numpy 형식으로 변환
 y = np.array(y)  # numpy 형식으로 변환
 print(x.shape)
 print(y.shape)
 
 #enumerate = 반복문 사용 시 몇 번째 반복문인지 확인이 필요할 수 있습니다. 이때 사용합니다. 인덱스 번호와 컬렉션의 원소를 tuple형태로 반환합니다.
-
 
 
 
@@ -65,3 +66,4 @@ np.save('./data/mini_project/x_data.npy', x)
 np.save('./data/mini_project/y_data.npy', y)
 np.save('./data/mini_project/x_predict.npy', x_predict)
 
+'''

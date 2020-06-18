@@ -32,7 +32,7 @@ x_predict = x_predict.reshape(20, 30000)
 x_train = x_train/255
 x_test = x_test/255
 x_predict = x_predict/255
-'''
+
 # 스케일러
 scaler = StandardScaler()
 scaler.fit(x_train)
@@ -137,4 +137,3 @@ for i in y_predict:
     elif i == 3:
         print('파인애플 입니다.')
         print('')
-'''
