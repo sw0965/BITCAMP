@@ -11,9 +11,9 @@ print(a)
 print(a,b)
 print(a,b,c)
 
-print("나는 {0}를 먹었다.".format(a))
-print("나는 {0}와 {1}를 먹었다.".format(a,b))
-print("나는 {0}와 {1}와 {2}를 먹었다.".format(a,b,c))
+print("나는 {}를 먹었다.".format(a))
+print("나는 {}와 {}를 먹었다.".format(a,b))
+print("나는 {}와 {}와 {}를 먹었다.".format(a,b,c))
 
 print('나는', a,'를 먹었다.')
 print('나는', a,'와', b,'를 먹었다.')
