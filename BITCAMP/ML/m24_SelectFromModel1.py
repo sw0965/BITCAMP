@@ -82,13 +82,21 @@ for thresh in thresholds:  # 칼럼 수 만큼 돈다!
     select_x_train = selection.transform(x_train)
     print(select_x_train.shape)
 
-    selection_model = GridSearchCV(XGBRegressor(), Parameters, n_jobs=-1, cv=5)
+    selection_model = GridSearchCV(XGBRegressor(base_score=0.5, booster='gbtree', colsample_bylevel=0.6,
+             colsample_bynode=1, colsample_bytree=0.9, gamma=0, gpu_id=-1,
+             importance_type='gain', interaction_constraints='',
+             learning_rate=0.1, max_delta_step=0, max_depth=4,
+             min_child_weight=1, monotone_constraints='()',
+             n_estimators=300, n_jobs=0, num_parallel_tree=1,
+             objective='reg:squarederror', random_state=0, reg_alpha=0,
+             reg_lambda=1, scale_pos_weight=1, subsample=1, tree_method='exact',
+             validate_parameters=1, verbosity=None), Parameters, n_jobs=-1, cv=5)
     # print('______________________________________________________________________')
     # print(selection_model.best_estimator_)
-    print('______________________________________________________________________')
-    # print(selection_model.best_params_)
     # print('______________________________________________________________________')
-    # selection_model.fit(select_x_train, y_train)
+    # print(selection_model.best_params_)
+    print('______________________________________________________________________')
+    selection_model.fit(select_x_train, y_train)
 
     select_x_test = selection.transform(x_test)
     y_predict = selection_model.predict(select_x_test)
@@ -130,4 +138,46 @@ Thresh=0.069, n=3, R2: 92.52%
 Thresh=0.301, n=2, R2: 69.41%
 (404, 1)
 Thresh=0.428, n=1, R2: 44.98%
+'''
+
+''' 그리드서치 포문에 넣었을때
+(404, 13)
+______________________________________________________________________
+Thresh=0.001, n=13, R2: 93.69%
+(404, 12)
+______________________________________________________________________
+Thresh=0.004, n=12, R2: 93.94%
+(404, 11)
+______________________________________________________________________
+Thresh=0.010, n=11, R2: 93.49%
+(404, 10)
+______________________________________________________________________
+Thresh=0.011, n=10, R2: 93.18%
+(404, 9)
+______________________________________________________________________
+Thresh=0.016, n=9, R2: 92.93%
+(404, 8)
+______________________________________________________________________
+Thresh=0.016, n=8, R2: 92.09%
+(404, 7)
+______________________________________________________________________
+Thresh=0.028, n=7, R2: 91.88%
+(404, 6)
+______________________________________________________________________
+Thresh=0.029, n=6, R2: 91.03%
+(404, 5)
+______________________________________________________________________
+Thresh=0.042, n=5, R2: 91.85%
+(404, 4)
+______________________________________________________________________
+Thresh=0.071, n=4, R2: 93.02%
+(404, 3)
+______________________________________________________________________
+Thresh=0.197, n=3, R2: 85.89%
+(404, 2)
+______________________________________________________________________
+Thresh=0.276, n=2, R2: 81.34%
+(404, 1)
+______________________________________________________________________
+Thresh=0.297, n=1, R2: 67.75%
 '''
