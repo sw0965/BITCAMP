@@ -19,16 +19,16 @@ print(y.shape)  #506,
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, random_state=66)
 
 n_estimateors = 100
-learning_rate = 0.7
-colsample_bytree = 0.11
+learning_rate = 1
+colsample_bytree = 1
 colsample_bylevel = 0.1
 
 max_depth = 8
 n_jobs = -1
 
-# model = XGBRegressor(max_depth=max_depth, learning_rate=learning_rate, n_estimators=n_estimateors,
-                    #   n_jobs=n_jobs, colsample_bytree=colsample_bytree, colsample_bylevel=colsample_bylevel)
-model = XGBRegressor(n_estimators=100, learning_rate=0.1, colsample_bytree=0.4, colsample_bylevel=0.5, max_depth=4, n_jobs=-1)
+model = XGBRegressor(max_depth=max_depth, learning_rate=learning_rate, n_estimators=n_estimateors,
+                      n_jobs=n_jobs, colsample_bytree=colsample_bytree, colsample_bylevel=colsample_bylevel)
+# model = XGBRegressor(n_estimators=100, learning_rate=0.1, colsample_bytree=0.4, colsample_bylevel=0.5, max_depth=4, n_jobs=-1)
 
 model.fit(x_train, y_train)
 score = model.score(x_test, y_test)
