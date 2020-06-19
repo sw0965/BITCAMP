@@ -1,26 +1,23 @@
+#데이컨 전처리 방법
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split, RandomizedSearchCV
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
-from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.pipeline import Pipeline
-from keras.models import Sequential, Model
-from keras.layers import Dense, Dropout, Input
-from sklearn.metrics import r2_score
-from sklearn.metrics import mean_absolute_error
+# import missingno as msno
 
 ############### 데이터 불러오기 ###############
-train      = pd.read_csv('./data/dacon/bio/train.csv',index_col=0, header=0)
-x_predict  = pd.read_csv('./data/dacon/bio/test.csv', index_col=0, header=0)
-y_predict  = pd.read_csv('./data/dacon/bio/sample_submission.csv', index_col=0, header=0)
-
-train_data = train.interpolate() 
-x_predict = x_predict.interpolate()
-# train = train_data.interpolate() 
+train      = pd.read_csv('./DATA/dacon/bio/train.csv',index_col=0, header=0)
+test  = pd.read_csv('./DATA/dacon/bio/test.csv', index_col=0, header=0)
+y_predict  = pd.read_csv('./DATA/dacon/bio/sample_submission.csv', index_col=0, header=0)
 
 
-# print(train.info())
-# print(x_predict.info())
-# print(x_predict.isnull().sum())
+print(train.shape)
+# print(train.head())
+
+# print(train.isnull().sum()[train.isnull().sum().values > 0])
+
+# test.filter(regex='_src$',axis=1).head().T.plot()
+# # plt.show()
+
+# train_dst = train.filter(regex='_dst$', axis=1).replace(0, np.NaN) # dst 데이터만 따로 뺀다.
+# test_dst = test.filter(regex='_dst$', axis=1).replace(0, np.NaN) # 보간을 하기위해 결측값을 삭제한다.
+# print(test_dst.head())
