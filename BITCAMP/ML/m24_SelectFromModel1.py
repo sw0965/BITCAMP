@@ -24,11 +24,7 @@ Parameters = [
 
 
 # model = GridSearchCV(XGBRegressor(), Parameters  ,cv = 5, n_jobs=-1)
-# print('______________________________________________________________________')
-# print(model.best_estimator_)
-# print('______________________________________________________________________')
-# print(model.best_params_)
-# print('______________________________________________________________________')
+
 
 # score = model.score(x_test, y_test)
 # print(' 점수 : ', score)
@@ -57,23 +53,32 @@ model = XGBRegressor(base_score=0.5, booster='gbtree', colsample_bylevel=0.6,
 model.fit(x_train, y_train)
 # 점수 :  0.9368795067163034
 # 점수 :  0.9284598140318608
-
-
 score = model.score(x_test, y_test)
 print(' 점수 : ', score)
 
+y_pred = model.predict(x_test)
+score = model.score(y_pred, y_test)
+
+print(' 점수 : ', score)
+
+# print('______________________________________________________________________')
+# print(model.best_estimator_)
+# print('______________________________________________________________________')
+# print(model.best_params_)
+# print('______________________________________________________________________')
 # score = model.score(x_test, y_test)
 # print('R2 : ', score)
-print(model.feature_importances_)
 
-plot_importance(model)
-# plt.show()
+# print(model.feature_importances_)
 
-thresholds = np.sort(model.feature_importances_)
-print(thresholds)
+# plot_importance(model)
+# # plt.show()
+
+# thresholds = np.sort(model.feature_importances_)
+# print(thresholds)
 
 
-
+'''
 
 for thresh in thresholds:  # 칼럼 수 만큼 돈다!
     selection = SelectFromModel(model, threshold=thresh, prefit=True)
@@ -82,28 +87,21 @@ for thresh in thresholds:  # 칼럼 수 만큼 돈다!
     select_x_train = selection.transform(x_train)
     print(select_x_train.shape)
 
-    selection_model = GridSearchCV(XGBRegressor(base_score=0.5, booster='gbtree', colsample_bylevel=0.6,
-             colsample_bynode=1, colsample_bytree=0.9, gamma=0, gpu_id=-1,
-             importance_type='gain', interaction_constraints='',
-             learning_rate=0.1, max_delta_step=0, max_depth=4,
-             min_child_weight=1, monotone_constraints='()',
-             n_estimators=300, n_jobs=0, num_parallel_tree=1,
-             objective='reg:squarederror', random_state=0, reg_alpha=0,
-             reg_lambda=1, scale_pos_weight=1, subsample=1, tree_method='exact',
-             validate_parameters=1, verbosity=None), Parameters, n_jobs=-1, cv=5)
+    selection_model = GridSearchCV(XGBRegressor(), Parameters, cv = 5, n_jobs=-1)
     # print('______________________________________________________________________')
-    # print(selection_model.best_estimator_)
-    # print('______________________________________________________________________')
-    # print(selection_model.best_params_)
-    print('______________________________________________________________________')
-    selection_model.fit(select_x_train, y_train)
 
+    # print('______________________________________________________________________')
+    selection_model.fit(select_x_train, y_train)
+    print(selection_model.best_estimator_)
+    print('______________________________________________________________________')
+    print(selection_model.best_params_)
     select_x_test = selection.transform(x_test)
     y_predict = selection_model.predict(select_x_test)
 
     score = r2_score(y_test, y_predict)
 
     print("Thresh=%.3f, n=%d, R2: %.2f%%" %(thresh, select_x_train.shape[1], score*100.0))
+''' 
 '''
 # 그리드 서치까지 묶기, SelectFromModel 파라미터 알아보기 (숙제)
 '''
@@ -181,3 +179,24 @@ Thresh=0.276, n=2, R2: 81.34%
 ______________________________________________________________________
 Thresh=0.297, n=1, R2: 67.75%
 '''
+
+
+
+# xgb()                점수 :  0.9221188544655419
+# gridsearch(xgb())    점수 :  0.9368795067163034
+# xgb(파라미터)         점수 :  0.9368795067163034
+
+# xgb 파라미터 넣고 포문 돌렸을때 포문엔 xgb 파라미터 디폴트로 적용
+# (404, 13) R2: 92.21%
+# (404, 12) R2: 91.96%
+# (404, 11) R2: 92.03%
+# (404, 10) R2: 92.19%
+# (404, 9) R2: 93.08%
+# (404, 8) R2: 92.52%
+# (404, 7) R2: 92.86%
+# (404, 6) R2: 92.71%
+# (404, 5) R2: 91.74%
+# (404, 4) R2: 91.47%
+# (404, 3) R2: 78.35%
+# (404, 2) R2: 69.41%
+# (404, 1) R2: 41.31%
