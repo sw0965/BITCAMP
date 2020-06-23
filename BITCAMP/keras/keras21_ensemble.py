@@ -20,12 +20,15 @@ from sklearn.model_selection import train_test_split
 x2_train,x2_test,y2_train,y2_test = train_test_split( 
     x2, y2, shuffle=False, train_size=0.8)
 
-
+print(x1_train.shape)
+print(x2_train.shape)
+print(y1_train.shape)
+print(y2_train.shape)
 
 # print("x_train",x1_train,"\ny_train",y1_train)
 # print("x_test",x1_test,"\ny_test",y1_test)
 
-
+'''
 #2. 모델구성
 from keras.models import Sequential, Model
 from keras.layers import Dense, Input # DNN구조의 기본
@@ -76,7 +79,7 @@ output2_3 = Dense(3)(output2_2)
 model = Model(inputs = [input1,input2], outputs = [output1_3, output2_3]) #히든레이어 명시가 필요없으니 위에 명시를 해주는것 Sequential() 이거처럼
 
 '''
-model.summary()
+# model.summary()
 '''
 
 #600
@@ -86,7 +89,7 @@ model.fit([x1_train,x2_train],
           [y1_train,y2_train],epochs=1, batch_size=1)
         #    validation_split=0.25, verbose=1) # batch_size = 32(default)
 '''
-model.summary()
+# model.summary()
 '''
 #4. 평가, 예측
 loss = model.evaluate([x1_test,x2_test],
@@ -148,3 +151,4 @@ print("R2 : ", (r2_1+r2_2)/2)
 # verbose 넣어보기
 
  # homework
+'''

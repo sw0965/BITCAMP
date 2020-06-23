@@ -20,6 +20,7 @@ print(y_predict.shape)  # (10000, 4)
 # print(x_predict.shape)        
 # print(y_predict.shape)   
 
+'''
 x = train[:,:71]
 y = train[:,71:]
 # print(x)
@@ -84,3 +85,10 @@ print(y_pred)
 # model.fit(x_train, y_train)
 # score = model.score(x_test, y_test)
 # print(' 점수 : ', score)
+'''
+
+
+
+# a = np.arange(10000,20000)
+# submission = pd.DataFrame(y_predict, a)
+# submission.to_csv(index = True, header=['hhb','hbo2','ca','na'],index_label='id')
