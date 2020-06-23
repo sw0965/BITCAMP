@@ -19,22 +19,23 @@ x2 = train_drop_na.iloc[:, 71:]
 y = train_drop_na.iloc[:,36:71]
 # print(x1)
 # print(x2)
-print(y.shape)
+print(y.shape)  # (3, 35)
 
 x = pd.concat([x1, x2], axis=1)
-print(x.shape)
+print(x.shape)  # (3, 40)
 
 
 # test = train.drop([575, 3609, 6897])
 # print(train_for_dst)
 
-# import numpy as np
-# from keras.layers import Dense, Dropout
-# from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.models import Sequential
+from sklearn.model_selection import train_test_split
 
-# model = Sequential()
 
-# model.add(Dense(50, input_shape=)
+model = Sequential()
+
+model.add(Dense(50, input_shape=(40, ))
 
 
 
