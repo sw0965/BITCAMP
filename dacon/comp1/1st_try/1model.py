@@ -9,23 +9,23 @@ from keras.models import Sequential
 from keras.layers import Dense
 import matplotlib.pyplot as plt
 
-train     = np.load('./DACON/comp1/data/train.npy', allow_pickle='ture')
-x_predict = np.load('./DACON/comp1/data/test.npy', allow_pickle='ture')
-y_predict = np.load('./DACON/comp1/data/y_predict.npy', allow_pickle='ture')
+train     = np.load('./DACON//comp1/1st_try/data/train.npy', allow_pickle='ture')
+x_predict = np.load('./DACON//comp1/1st_try/data/test.npy', allow_pickle='ture')
+y_predict = np.load('./DACON//comp1/1st_try/data/y_predict.npy', allow_pickle='ture')
 
-print(train.shape)      # (10000, 75)
-print(x_predict.shape)      #  (10000, 71)
-print(y_predict.shape)  # (10000, 4)
+# print(train)      # (10000, 75)
+# print(x_predict)      #  (10000, 71)
+# print(y_predict)  # (10000, 4)
 
 # print(x_predict.shape)        
 # print(y_predict.shape)   
 
-'''
-x = train[:,:71]
+rho = train[:,:1]
+print(rho)
+src = train[:,1:36]
+dst = train[:,36:71]
 y = train[:,71:]
-# print(x)
-# print(y)
-
+'''
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size= 0.2, random_state = 44, shuffle= True)
 
 # print(x_train.shape)  (8000, 71)
