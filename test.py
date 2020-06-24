@@ -1,105 +1,113 @@
-# import numpy as np
-# ls = list(np.arange(1, 15, 0.5))
-# print(ls)
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
-# double = lambda x: x*2
-# print(double(5))
+train = pd.read_csv('./DATA/dacon/bio/train.csv', index_col=0)
+test  = pd.read_csv('./DATA/dacon/bio/test.csv', index_col=0)
+
+print(train.shape)
+print(test.shape)
+
+
+
+
+# print(train.info())
+train_drop_na = train.dropna()
+# print(train_drop_na)
+train_drop_na.T.plot()
+# plt.show()
+
+src = train_drop_na.iloc[:, 1:2]
+target = train_drop_na.iloc[:, 71:]
+y = train_drop_na.iloc[:,36:37]
+print(src)
+print(target)
+print(y)  # (3, 35)
+
+x = pd.concat([src, target], axis=1)
+print(x)  # (3, 40)
+
+
+# test = train.drop([575, 3609, 6897])
+# print(train_for_dst)
+
+from keras.layers import Dense, Dropout
+from keras.models import Sequential
+from sklearn.model_selection import train_test_split
+
+# x_train, x_test, y_test, y_train = train_test_split(x, y, random_state=44, shuffle=True, test_size=0.2)
+
+
+model = Sequential()
+
+model.add(Dense(16, input_dim=5))
+model.add(Dense(32))
+# model.add(Dense(356))
+# model.add(Dense(712))
+# model.add(Dense(356))
+# model.add(Dense(128))
+model.add(Dense(16))
+model.add(Dense(1))
+
+model.summary()
+
+model.compile(loss='mse',optimizer='adam', metrics=['mse'])
+model.fit(x,y,epochs=140)
+
+loss,mse = model.evaluate(x, y)
+print('eval loss :', loss)
+print('eval mse :', mse)
+
+y_predict = model.predict(x)
+print(y_predict)
+print(y)
+'''
+loss,mse = model.evaluate(y_predict, y)
+print('prd loss :', loss)
+print('prd mse :', mse)
+'''
+
+
+
+
+
+
+
+
+
+
 
 
 '''
-m28_eval2
-m28_eval3
 
-SelectfromModel
-1. 회기 m29_eval1
-2. 이진분류 m29_eval2
-3. 다중분류 m29_eval3
+train_dst = train.iloc[:,36:71]
+test_dst = test.iloc[:,36:]
+y = train.iloc[:,71:]
 
-1. eval에 'loss'와 다른 지표 1개 더 추가
-2. earlyStopping 적용
-3. plot으로 그릴것.
-
-4. 결과는 주석으로 소스 하단에 표시. 
-
-5. m27 ~ 29까지 완벽히 이해할것 '''
-
-
-from sklearn.feature_selection import SelectFromModel
-import numpy as np
-from xgboost import XGBClassifier,XGBRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.datasets import load_boston
-from sklearn.metrics import r2_score
-from sklearn.model_selection import GridSearchCV,RandomizedSearchCV,KFold
-import matplotlib.pyplot as plt
-from sklearn.feature_selection import SelectFromModel
-
-# dataset = load_boston()
-# x = dataset.data
-# y = dataset.target
-
-x, y = load_boston(return_X_y=True)
-
-x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.8,
-                                                    random_state=66)
-
-# XGBRFRegressor??????
-
-model = XGBRegressor(n_estimators=500,learning_rate=0.1,n_jobs=-1)
-
-model.fit(x_train,y_train)
-
-# 핏 안하면 안돌아감
-thres_holds = np.sort(model.feature_importances_)
-print("thres_holds : ",thres_holds)
-
-parameters = [{"n_estimators": [90, 100, 110],
-              "learning_rate": [0.1, 0.001, 0.01],
-              "max_depth": [3, 5, 7, 9],
-              "colsample_bytree": [0.6, 0.9, 1],
-              "colsample_bylevel": [0.6, 0.7, 0.9],
-              'n_jobs' : [-1]}  ]
-
-# parameters = [{"n_estimators": [90],
-#               "learning_rate": [0.1,0.2],
-#               "max_depth": [3],
-#               "colsample_bytree": [0.6],
-#               "colsample_bylevel": [0.6],
-#               'n_jobs' : [-1]}  ]
-
-n_jobs = -1
-
-
-for thresh in thres_holds:
-    selection = SelectFromModel(model, threshold=thresh, prefit=True) # 추가 파라미터 median
-
-    selec_x_train = selection.transform(x_train)
-
-    # print(f"selec_x_train.shape : {selec_x_train.shape}") # columns을 한개씩 줄이고 있다 
-
-    # selec_model = XGBRegressor()
-    selec_model = GridSearchCV(model,parameters,cv=3, n_jobs=n_jobs)
-    selec_model.fit(selec_x_train,y_train)
-    # print(thresh)
-
-    selec_x_test = selection.transform(x_test)
-    y_pred = selec_model.predict(selec_x_test)
-
-    score = r2_score(y_test,y_pred)
-    # print(score)
-    # print(f"model.feature_importances_ : {model.feature_importances_}")
-
-    print(f"Thresh={np.round(thresh,2)} \t n={selec_x_train.shape[1]} \t r2={np.round(score*100,2)}")
-
-# 메일 제목 : 아무개 **등
+# print(train_dst.notnull())
+train_dst_not = train_dst.dropna()
 
 
 
-# model.fit(x_train,y_train, verbose=True, eval_metric='error',eval_set=[(x_train, y_train), (x_test, y_test)])
-# model.fit(x_train,y_train, verbose=True, eval_metric=['rmse','logloss'],eval_set=[(x_train, y_train), (x_test, y_test)],
-#                             early_stopping_rounds=500)
+train_dst = train_dst.interpolate(methods = 'linear', axis= 1)
+test_dst = test_dst.interpolate(methods = 'linear', axis= 1)
 
-selec_model.fit(x_train,y_train, verbose=True, eval_metric=['rmse','logloss'],eval_set=[(x_train, y_train), (x_test, y_test)],
-                            early_stopping_rounds=500)
 
-# rmse, mae, logloss, error, auc  // error이 acc라고?
+# print(train_dst.info())
+# print(test_dst.info())
+
+
+
+
+
+train_650dst = train_dst.iloc[:,0]
+train_660dst = train_dst.iloc[:,1]
+train_670dst = train_dst.iloc[:,2]
+train_680dst = train_dst.iloc[:,3]
+train_690dst = train_dst.iloc[:,4]
+train_700dst = train_dst.iloc[:,5]
+
+
+# print(train_dst.iloc[:,0])
+# print(train_dst.notnull())
+'''
