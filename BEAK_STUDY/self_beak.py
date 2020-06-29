@@ -243,17 +243,113 @@
 
 # https://www.acmicpc.net/problem/2742
 #------------- 기찍 N  문제 (브3)-------------#
+# import sys
+# N = int(sys.stdin.readline())
+# for i in list(range(1,N+1)[::-1]):
+#     print(i)
+'''
+# [::-1] keyworld 차순을 바꿔준다.
+# print(list(range(1, 5)[::-1]))  # [4, 3, 2, 1]
+'''
+# https://www.acmicpc.net/problem/11021
+#------------- A+B - 7 문제 (브3)-------------#
+# import sys
+# T = int(sys.stdin.readline())
+# for i in range(T):
+#     A,B = map(int,sys.stdin.readline().split())
+#     x = i+1
+#     a = A+B
+#     print(f"Case #{x}: {a}")
+
+# https://www.acmicpc.net/problem/11022
+#------------- A+B - 8  문제 (브3)-------------#
+# import sys
+# T = int(sys.stdin.readline())
+# for i in range(T):
+#     A,B = map(int,sys.stdin.readline().split())
+#     C = A+B
+#     x = i+1
+#     print(f"Case #{x}: {A} + {B} = {C}")
+
+# https://www.acmicpc.net/problem/2438
+#------------- 별 찍기 - 1 문제 (브3)-------------#
+# N = int(input())
+# for i in range(1, N+1):
+#     a = "*"
+#     print(a*i)
+
+# a = 'apple'
+# b = 'banana'
+# c = 2
+# print(a*2 )
+
+# https://www.acmicpc.net/problem/2439
+#-------------별 찍기 - 2 문제 (브3)-------------#
+# N = int(input())
+# for i in range(1, N+1):
+#     a = "*"*i
+#     print(a.rjust(N))
+
+'''
+rjust(x) = 오른쪽 '문자열' 정렬, x 에 갯수에 맞춰서 정렬이됨 
+ex) 
+
+1.
+a = '3'
+print(a.rjust(4, '0')) rejust(x, y): x = 칸 갯수 y = 채울곳에 넣을 것 
+out :  0003
+
+2.
+a = '3'
+print(a.rjust(4))
+out : '   4' # 4앞에 3칸이 빈칸. 빈칸에 넣어줄 문자를 따로 지정하지 않았기 때문에 빈칸으로 찍힌다.
+
+rjust 뿐 아니라 ljust() = 왼쪽정렬 center() = 가운데등이 있고 zfill() = 기호를 포함해서 인식하며 기호를 맨 앞쪽에 빼주고 빈칸을 0으로 채운다.
+
+zfill ex)
+a = '-3'
+print(a.zfill(5))
+out : -0003  # -까지 포함하여 5칸을 쳐준다.
+'''
+
+# https://www.acmicpc.net/problem/10871
+#-------------X보다 작은 수 문제 (브3)-------------#
+
+# N, X = map(int,input().split())
+# A = map(int,input().split())
+# ls = []
+# for i in list(A):
+#     if i < X:
+#         ls.append(i)
+# print(*ls)
+
+# *=list 해제
+# a = range(1, 5)
+# print(list(a))
+
+# https://www.acmicpc.net/problem/10952
+#-------------A+B - 5 문제 (브3)-------------#
+# import sys
+# T = map(int,sys.stdin.readline().split())
+# for i in range(1, T+1):
+#     A, B = map(int,input().split())
+#     C = A+B
+#     print(C)
+    # while C == 0:
+    #     print(C)
+    #     break
+    # print(A, B)
+###정답###
+# A, B = map(int,input().split())
+# while A+B > 0:
+#     print(A+B)
+#     A, B = map(int,input().split())
+'''while 문에서는 증감식 필수!'''
+
+# https://www.acmicpc.net/problem/10951
+#------------A+B - 4 문제 (브3)-------------#
 import sys
-N = sys.stdin.readline()
-for i in list(N[::-1]):
-    print(i)
-
-'''
-# MIN, MAX = map(int,input().split())
-# if 1 <= MIN <= 1000000000000 and MIN <= MAX <= MIN+1000000:
-a = (1, 2, 3, 4, 5, 6)
-for i in
-
-a = '4'
-print
-'''
+A, B = map(int,sys.stdin.readline().split())
+while A+B:
+    print(A+B)
+    A, B = map(int,input().split())
