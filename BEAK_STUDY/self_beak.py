@@ -542,11 +542,11 @@ out : -0003  # -까지 포함하여 5칸을 쳐준다.
 #     if i == n:
 #         print(i)
 # # print(n)
-
+'''
 n = int(input())
 ls = []
 for i in range(1, n+1):
     star = i*'*'
     # print(star)
     back_star = [n::-1*'*']
-    print(back_star)
+    print(back_star)'''
