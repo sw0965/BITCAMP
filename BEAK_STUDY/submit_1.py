@@ -1,9 +1,12 @@
-# https://www.acmicpc.net/problem/1330
-# ------------- 두수 비교하기 문제 (브4)-------------#
-A, B = map(int,input().split())
-if A > B:
-    print('>')
-elif A < B:
-    print('<')
-elif A == B:
-    print('==')
+# https://www.acmicpc.net/problem/14681
+#------------- 사분면 고르기 문제 (브4)-------------#
+x = int(input())
+y = int(input())
+if x > 0 and y > 0:
+    print(1)
+elif x < 0 and y > 0:
+    print(2)
+elif x < 0 and y < 0:
+    print(3)
+elif x > 0 and y < 0:
+    print(4)

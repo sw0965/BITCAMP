@@ -130,6 +130,7 @@
 # if 0 <= H <= 23 and 0 <= M <= 59:
 
 
+
 #--실 패--
 # if a < 0:
 #     print(H-1,a+60)
@@ -173,6 +174,21 @@
 #     M = M-45
 
 # print(H, M)
+
+#또 다른 정답(선우형)
+# h, m = map(int, input().split())
+# time = 0
+# if h == 0 and m-45 < 0:
+#     h = h + 23
+#     m = m +15
+#     print(h,m)
+# else:
+#     time = h*60+m
+#     alarm = time - 45
+#     a_hour = alarm // 60
+#     a_minute = alarm % 60
+#     print(a_hour, a_minute)
+
 
 # https://www.acmicpc.net/problem/2558
 #------------- A+B - 2 문제 (브5)-------------#
@@ -348,8 +364,189 @@ out : -0003  # -까지 포함하여 5칸을 쳐준다.
 
 # https://www.acmicpc.net/problem/10951
 #------------A+B - 4 문제 (브3)-------------#
-import sys
-A, B = map(int,sys.stdin.readline().split())
-while A+B:
-    print(A+B)
-    A, B = map(int,input().split())
+# import sys
+# import time
+# A, B = map(int,sys.stdin.readline().split())
+# time = time.time()
+# print(time)
+# while time + 5:
+    # print(A+B)
+    # A, B = map(int,input().split())
+
+# import sys
+# A, B = map(int,sys.stdin.readline().split())
+# if 0<A<10 and 0<B<10:
+#     while True:
+#         print(A+B)
+#         A, B = map(int,sys.stdin.readline().split())
+# exit()
+
+# import sys
+# A, B = map(int,sys.stdin.readline().split())
+# while 0<A<10 and 0<B<10:
+#     print(A+B)
+#     A, B = map(int,sys.stdin.readline().split())
+
+
+
+# import sys
+# A, B = map(int,sys.stdin.readline().split())
+# while True:
+#     try:
+#         0<A<10 and 0<B<10
+#         print(A+B)
+#         A, B = map(int,sys.stdin.readline().split())
+#     except:
+#         break
+
+#정답
+# import sys
+# A, B = map(int,sys.stdin.readline().split())
+# while 0<A<10 and 0<B<10:
+#     try:
+#         print(A+B)
+#         A, B = map(int,sys.stdin.readline().split())
+#     except:
+#         break
+'''try except 를 안걸어주면 백준에서 런타임에러가 뜬다. false로 인해 따로 멈추라는 명령어를 바라는듯.'''
+
+# https://www.acmicpc.net/problem/1110
+#------------더하기 사이클 문제 (브1)-------------#
+
+# n = int(input())
+# c = n
+# count=0
+# while True:
+#     a = c//10
+#     b = c%10
+#     c = b*10+(a+b)%10
+#     count += 1
+#     if c == n:
+#         break
+# print(count)
+
+# 갯수를 뽑기위해 count를 0으로 지정해두고 while문에 +1을 한다
+# c = n을 해둔 이유는 while 문 안에 n이 들어가게되면 n에서만 돌기 때문에 첫 수 n에서 c로 변환해주고 그 뒤로 c while을 돌리기 위해 언급.
+
+# https://www.acmicpc.net/problem/10039
+#------------평균 점수 문제 (브4)-------------#
+# 원섭 = int(input())
+# 세희 = int(input())
+# 상근 = int(input())
+# 숭   = int(input())
+# 강수 = int(input())
+
+# student_score = [원섭, 세희, 상근, 숭, 강수]
+# study = []
+# for i in student_score:
+#     # print(average)
+#     if i < 40:
+#         study.append(40)
+#     else:
+#         study.append(i)
+# average = sum(study)/len(study)
+
+# print(average)
+
+# 정답
+# 원섭 = int(input())
+# 세희 = int(input())
+# 상근 = int(input())
+# 숭   = int(input())
+# 강수 = int(input())
+
+# student_score = [원섭, 세희, 상근, 숭, 강수]
+# study = []
+# for i in student_score:
+#     # print(average)
+#     if i < 40:
+#         study.append(40)
+#     else:
+#         study.append(i)
+# average = sum(study)//len(study)
+# print(average)
+
+#소수점이 나와서 풀리지 틀렸습니다가 떴다.
+
+# https://www.acmicpc.net/problem/5543
+#------------상근날드  문제 (브4)-------------#
+
+# 상덕버거 = int(input())
+# 중덕버거 = int(input())
+# 하덕버거 = int(input())
+# 콜라     = int(input())
+# 사이다   = int(input())
+
+# burger = [상덕버거, 중덕버거, 하덕버거]
+# beverage = [콜라, 사이다]
+
+# setmenu = min(burger) + min(beverage) - 50
+# print(setmenu)
+
+# https://www.acmicpc.net/problem/10817
+#------------세 수  문제 (브3)-------------#
+# A, B, C = map(int,input().split())
+# num = [A, B, C]
+# # ans = []
+# n_max = max(num)
+# n_min = min(num)
+# ans = num.remove(n_max)
+
+# print(ans)
+
+# print(ans)
+# for i in num:
+#     del min(num) and del max
+# print()
+
+# a = [1, 2, 3, 4]
+# b = []
+# c=max(a)
+# d=min(a)
+# for i in a:
+#     if i == max(a) and min(a):
+#         a.remove(c)
+#         a.remove(d)
+# print(*a)
+# a.remove()
+# print(a)
+
+#정답
+# A, B, C = map(int,input().split())
+# num = [A, B, C]
+# a = max(num)
+# b = min(num)
+# for i in num:
+#     if i == a and b:
+#         num.remove(a)
+#         num.remove(b)
+# print(*num)
+# 과연 이게 백준에서 원하는 답이였을까...
+
+# https://www.acmicpc.net/problem/2523
+#------------별 찍기 - 13 문제 (브3)-------------#
+# n = int(input())
+# star = '*'
+# a = n
+# b = n-1
+# print(n*star/n*star)
+
+# while True:
+    # print
+
+# n = int(input())
+# n = list(range(1, n+1))
+# star = '*'
+# # print(n)
+# for i in n:
+#     if i == n:
+#         print(i)
+# # print(n)
+
+n = int(input())
+ls = []
+for i in range(1, n+1):
+    star = i*'*'
+    # print(star)
+    back_star = [n::-1*'*']
+    print(back_star)
