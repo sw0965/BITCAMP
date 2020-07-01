@@ -523,7 +523,7 @@ out : -0003  # -까지 포함하여 5칸을 쳐준다.
 # print(*num)
 # 과연 이게 백준에서 원하는 답이였을까...
 
-# https://www.acmicpc.net/problem/2523
+# https://www.acmicpc.net/problem/2523 풀다가 말았음
 #------------별 찍기 - 13 문제 (브3)-------------#
 # n = int(input())
 # star = '*'
@@ -542,11 +542,130 @@ out : -0003  # -까지 포함하여 5칸을 쳐준다.
 #     if i == n:
 #         print(i)
 # # print(n)
-'''
+
 n = int(input())
-ls = []
-for i in range(1, n+1):
-    star = i*'*'
-    # print(star)
-    back_star = [n::-1*'*']
-    print(back_star)'''
+
+star = []
+for i in list(range(1, n+1)):
+    a = '*'*i
+    star.append(a)
+    print(star)
+    
+    # if n == max(range(1, n+1)):
+    #     star = '*'*i 
+
+# https://www.acmicpc.net/problem/4299
+#------------AFC 윔블던 문제 (브4)-------------#
+
+# 첫째 줄에 두 팀 점수의 합과 차가 빈 칸으로 구분되어 주어진다. 축구 점수는 항상 음이 아닌 정수이고, 합과 차는 1000보다 작거나 같은 음이 아닌 정수이다.
+# 첫째 줄에 두 팀의 경기 결과를 출력한다. 득점을 많이 한 쪽을 먼저 출력한다. 만약, 그러한 합과 차를 갖는 경기 결과가 없다면, -1을 출력한다.
+
+# g_dif = int(input())
+
+# g_sum = a+b
+# d = (a-b)
+# c=5
+# d=1
+# print(a)
+# print(b)
+# i = 0
+# print(max(g_sum,g_dif), min(g_sum,g_dif))
+
+# a = 0 < g_sum-i < g_sum
+# b = g_sum - a
+# # i += 1
+# # 각팀 a ,b 를 구해주는 프로그램
+# g_sum = a+b
+# g_dif = a-b>0 #맞다면 프린트 아니면 프린트 -1
+
+# while True:
+#     if a + b == g_sum:
+#         print(max(a,b))
+#         break
+
+
+# print(a)
+# print(b)
+# print(g_sum)
+# print(g_dif)
+
+# s_max = max(a,b)
+# s_min = min(a,b)
+# while True:
+#     s_max+s_min == g_sum
+
+# s_max = max(a, b)
+# s_min = min(a, b)
+
+# 합이 주어질때 a,b를 구해주는 함수
+# g_sum = int(input())
+# a = 0
+# while True:
+#     b = g_sum - a
+#     (a+b) == g_sum
+#     print(a, b)
+#     if a > b:
+#         break
+#     a += 1
+
+# print(a,b)
+    # if a > g_sum:
+    #     # print(a,b)
+    #     break
+    # print(a,b)
+
+#헛짓거리
+
+# g_sum = int(input())
+# g_dif = int(input())
+# a = 0
+# while True:
+#     b = g_sum - a
+#     (a+b) == g_sum
+#     (b-a) == g_dif
+
+#     if a > b:
+#         break
+        
+#     else:
+#         print(-1)
+
+#     a += 1
+
+# print(a, b)
+# 정답 #
+# import sys
+# g_sum, g_dif = map(int, sys.stdin.readline().split())
+
+# a = g_sum+g_dif
+# b = g_sum-g_dif
+
+# team_a = (a)//2  # team a 점수
+# team_b = (b)//2  # team b 점수
+
+# mx = max(team_a,team_b)
+# mn = min(team_a,team_b)
+
+# if 0<=g_sum<=1000 and 0<=g_dif<=1000:
+#     if team_a == team_b:
+#         print(mx,mn)
+
+#     elif g_sum < g_dif:
+#         print(-1)
+
+#     elif g_dif == 0:
+#         print(g_sum, g_dif)
+
+#     elif a%2 and b%2 != 0:
+#         print(-1)
+
+#     else:
+#         print(mx, mn)
+
+
+# team_a = (g_sum+g_dif)/2
+# team_b = (g_sum-g_dif)/2
+# mx = max(team_a,team_b)
+# mn = min(team_a,team_b)
+
+

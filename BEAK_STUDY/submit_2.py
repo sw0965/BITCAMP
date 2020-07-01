@@ -1,20 +1,10 @@
-# https://www.acmicpc.net/problem/10039
-#------------평균 점수 문제 (브4)-------------#
-원섭 = int(input())
-세희 = int(input())
-상근 = int(input())
-숭   = int(input())
-강수 = int(input())
-
-student_score = [원섭, 세희, 상근, 숭, 강수]
-study = []
-for i in student_score:
-    # print(average)
-    if i < 40:
-        study.append(40)
-    else:
-        study.append(i)
-average = sum(study)//len(study)
-print(average)
-
-#소수점이 나와서 풀리지 틀렸습니다가 떴다.
+# https://www.acmicpc.net/problem/2742
+#------------- 기찍 N  문제 (브3)-------------#
+import sys
+N = int(sys.stdin.readline())
+for i in list(range(1,N+1)[::-1]):
+    print(i)
+'''
+# [::-1] keyworld 차순을 바꿔준다.
+# print(list(range(1, 5)[::-1]))  # [4, 3, 2, 1]
+'''

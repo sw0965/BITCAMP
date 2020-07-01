@@ -1,12 +1,11 @@
-# https://www.acmicpc.net/problem/14681
-#------------- 사분면 고르기 문제 (브4)-------------#
-x = int(input())
-y = int(input())
-if x > 0 and y > 0:
-    print(1)
-elif x < 0 and y > 0:
-    print(2)
-elif x < 0 and y < 0:
-    print(3)
-elif x > 0 and y < 0:
-    print(4)
+# https://www.acmicpc.net/problem/5543
+#------------상근날드  문제 (브4)-------------#
+
+상덕버거 = int(input())
+중덕버거 = int(input())
+하덕버거 = int(input())
+콜라     = int(input())
+사이다   = int(input())
+
+burger = [상덕버거, 중덕버거, 하덕버거]
+beverage = [콜라, 사이다]
