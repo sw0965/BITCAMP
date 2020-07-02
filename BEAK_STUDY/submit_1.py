@@ -1,11 +1,10 @@
-# https://www.acmicpc.net/problem/5543
-#------------상근날드  문제 (브4)-------------#
+# https://www.acmicpc.net/problem/2753
+#------------- 윤년 문제 (브4)-------------#
 
-상덕버거 = int(input())
-중덕버거 = int(input())
-하덕버거 = int(input())
-콜라     = int(input())
-사이다   = int(input())
-
-burger = [상덕버거, 중덕버거, 하덕버거]
-beverage = [콜라, 사이다]
+year = int(input())
+if year%4 == 0 and not(year%100 == 0) or year%400==0:
+    print(1)
+else:
+    print(0)
+# year = 1<= year <= 4000  # 범위 넣어주니까 틀림 ㅡㅡ
+# not을 쓸때는 ()가 필요하다.

@@ -110,7 +110,7 @@ def my_loss(y_true, y_pred):
 
 
 def my_loss_E1(y_true, y_pred):
-    return K.mean(K.square(y_true-y_pred)*weight1)/16e+04
+    return K.mean(K.square(y_true-y_pred)*weight1)/32e+04
 
 def my_loss_E2(y_true, y_pred):
     divResult = Lambda(lambda x: x[0]/x[1])([(y_pred-y_true),(y_true+0.000001)])
@@ -308,4 +308,18 @@ for train_target in range(3):
     elif train_target == 2: # v 학습
         submit.iloc[:,4] = pred_data_test[:,3]
 
-submit.to_csv('./DACON/comp3/submit/pro_submit3.csv', index = False)
+submit.to_csv('./DACON/comp3/submit/pro_submit5.csv', index = False)
+
+
+#submit 5  32e+04
+'''
+loss: 155786339744.91428
+정답(original): [   0.  -400.    50.     0.4]
+예측값(original): [ 2.353713   -0.23590966 -2.391586    0.40047243]
+6.650230208156493
+1312.380432851962
+(2800, 4)
+1.0308438547178689
+5.103105306625371
+-5.861133337020874
+'''

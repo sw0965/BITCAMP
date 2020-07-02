@@ -543,13 +543,13 @@ out : -0003  # -까지 포함하여 5칸을 쳐준다.
 #         print(i)
 # # print(n)
 
-n = int(input())
+"""n = int(input())
 
 star = []
 for i in list(range(1, n+1)):
     a = '*'*i
     star.append(a)
-    print(star)
+    print(star)"""
     
     # if n == max(range(1, n+1)):
     #     star = '*'*i 
@@ -669,3 +669,7 @@ for i in list(range(1, n+1)):
 # mn = min(team_a,team_b)
 
 
+# https://www.acmicpc.net/problem/11654
+#------------아스키 코드 문제 (브5)-------------#
+# n = str(input())
+# print(ord(n))
