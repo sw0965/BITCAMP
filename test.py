@@ -1,4 +1,4 @@
-# for i in [1, 2, 3, 4, 5]:
+'''# for i in [1, 2, 3, 4, 5]:
 #     print('only i :', i)
 #     for j in [1, 2, 3, 4, 5]:
 #         print('only j :', j)
@@ -66,3 +66,20 @@ x_pred = np.array([11, 12, 13, 14])
 y_pred = model.predict(x_pred)
 y_pred = np.argmax(y_pred, axis=1)
 print(y_pred)
+'''
+
+# a = [['alice', [1, 2, 3]], ['bob', 20], ['tony', 15], ['suzy', 30]]
+# b = dict(a)
+# print(b)
+# print(b['alice'][1])
+
+a = 10
+ls = []
+ls.append(a)
+print(ls)
+while a:
+    b = a*10
+    ls.append(b)
+    if b == 10000:
+        break
+    print(ls)

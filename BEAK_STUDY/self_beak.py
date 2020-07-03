@@ -673,3 +673,38 @@ for i in list(range(1, n+1)):
 #------------아스키 코드 문제 (브5)-------------#
 # n = str(input())
 # print(ord(n))
+
+# https://www.acmicpc.net/problem/1076
+#------------저항  문제 (브2)-------------#
+'''a = input().split()
+# a, b, c = input().split()
+
+color = {'black':[0, 1], 
+         'brown':[1, 10],  
+         'red':[2, 100], 
+         'orange':[3, 1000], 
+         'yellow':[4, 10000], 
+         'green':[5, 100000], 
+         'blue':[6, 1000000],
+         'violet':[7, 10000000],
+         'grey':[8, 100000000],
+         'whitl':[9, 1000000000]}
+
+a = color.keys['a']
+print(a.value)'''
+
+# https://www.acmicpc.net/problem/10797
+#------------10부제  문제 (브4)-------------#
+# day = int(input())
+# a,b,c,d,e = map(int,input().split())
+
+# f = [a,b,c,d,e]
+# c = []
+
+# for i in f:
+#     if i == day:
+#         c.append(i)
+# print(c.count(day))
+
+
+

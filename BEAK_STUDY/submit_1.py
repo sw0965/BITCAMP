@@ -1,10 +1,23 @@
-# https://www.acmicpc.net/problem/2753
-#------------- 윤년 문제 (브4)-------------#
+# # https://www.acmicpc.net/problem/10797
+# #------------10부제  문제 (브4)-------------#
+# day = int(input())
+# a,b,c,d,e = map(int,input().split())
 
-year = int(input())
-if year%4 == 0 and not(year%100 == 0) or year%400==0:
-    print(1)
-else:
-    print(0)
-# year = 1<= year <= 4000  # 범위 넣어주니까 틀림 ㅡㅡ
-# not을 쓸때는 ()가 필요하다.
+# f = [a,b,c,d,e]
+# c = []
+
+# for i in f:
+#     if i == day:
+#         c.append(i)
+# print(c.count(day))
+
+# 7_03_main.py 
+day = int(input())
+count = 0
+
+aaa = map(int,input().split())
+
+for i in aaa:
+    if i == day:
+        count += 1
+print(count)
