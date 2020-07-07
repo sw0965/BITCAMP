@@ -676,23 +676,58 @@ for i in list(range(1, n+1)):
 
 # https://www.acmicpc.net/problem/1076
 #------------저항  문제 (브2)-------------#
-'''a = input().split()
-# a, b, c = input().split()
+# a = input().split()
+# # b = input().split()
+# # c = input().split()
+# # a, b, c = input().split()
+    
 
-color = {'black':[0, 1], 
-         'brown':[1, 10],  
-         'red':[2, 100], 
-         'orange':[3, 1000], 
-         'yellow':[4, 10000], 
-         'green':[5, 100000], 
-         'blue':[6, 1000000],
-         'violet':[7, 10000000],
-         'grey':[8, 100000000],
-         'whitl':[9, 1000000000]}
+# a = **a
+# print(a)
+# color = {'black':[0, 1], 
+#          'brown':[1, 10],  
+#          'red':[2, 100], 
+#          'orange':[3, 1000], 
+#          'yellow':[4, 10000], 
+#          'green':[5, 100000], 
+#          'blue':[6, 1000000],
+#          'violet':[7, 10000000],
+#          'grey':[8, 100000000],
+#          'white':[9, 1000000000]}
+# # print(color[*a])
+# def out_list(a):
+    # a = *a
+    
+# out_list(a)
+# printcolor[*a ]
+# dict_keys = color.keys()
+# dict_values = color.values()
+# print(color['+ *a +'])
+# print(dict_keys)
+# print(dict_values)
+# print(a)
+# for i in dict_keys:
+    # if a == i:
+        # print(i)
+a = list(input().split())
+# b = input().split()
+# c = input().split()
 
-a = color.keys['a']
-print(a.value)'''
+color = ['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'grey', 'white']
+value = list(range(10))
+multi = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000]
 
+# ju = color,value,multi
+# print(ju)
+# a = [a]
+# b = [b]
+# c = [c]
+
+# print(int(str(value[0])+str(multi[0])))
+for i in color, value, multi:
+    if i == a:
+        a = str(value[i])
+        print(a)
 # https://www.acmicpc.net/problem/10797
 #------------10부제  문제 (브4)-------------#
 # day = int(input())
@@ -708,3 +743,35 @@ print(a.value)'''
 
 
 
+# https://www.acmicpc.net/problem/13136
+#-----------Do Not Touch Anything  문제 (브4)-------------#
+# 쌩쇼
+# x, y, cctv = map(int,input().split())
+# a = x%cctv
+# b = y%cctv
+# c = cctv
+# d = cctv
+# if a != 0 and b != 0:
+#     c = cctv + 1
+#     d = cctv + 1
+#     print(c*d)
+
+# elif a == 0 and b != 0:
+#     c = cctv
+#     d = cctv+1
+#     print(c*d)
+
+# elif a != 0 and b == 0:
+#     c = cctv+1
+#     d = cctv
+#     print(c*d)
+
+
+# 정답
+# import math
+# x, y, cctv = map(int,input().split())
+
+# a = math.ceil(x/cctv)
+# b = math.ceil(y/cctv)
+
+# print(a*b)

@@ -1,23 +1,32 @@
-# # https://www.acmicpc.net/problem/10797
-# #------------10부제  문제 (브4)-------------#
-# day = int(input())
-# a,b,c,d,e = map(int,input().split())
+# https://www.acmicpc.net/problem/13136
+#-----------Do Not Touch Anything  문제 (브4)-------------#
+# 쌩쇼
+# x, y, cctv = map(int,input().split())
+# a = x%cctv
+# b = y%cctv
+# c = cctv
+# d = cctv
+# if a != 0 and b != 0:
+#     c = cctv + 1
+#     d = cctv + 1
+#     print(c*d)
 
-# f = [a,b,c,d,e]
-# c = []
+# elif a == 0 and b != 0:
+#     c = cctv
+#     d = cctv+1
+#     print(c*d)
 
-# for i in f:
-#     if i == day:
-#         c.append(i)
-# print(c.count(day))
+# elif a != 0 and b == 0:
+#     c = cctv+1
+#     d = cctv
+#     print(c*d)
 
-# 7_03_main.py 
-day = int(input())
-count = 0
 
-aaa = map(int,input().split())
+# 정답
+import math
+x, y, cctv = map(int,input().split())
 
-for i in aaa:
-    if i == day:
-        count += 1
-print(count)
+a = math.ceil(x/cctv)
+b = math.ceil(y/cctv)
+
+print(a*b)
