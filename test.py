@@ -86,69 +86,150 @@ print(y_pred)
 
 
 
-from keras.applications.vgg19 import VGG19
-import matplotlib.pyplot as plt
+# from keras.applications.vgg19 import VGG19
+# import matplotlib.pyplot as plt
 
-from keras.preprocessing.image import load_img
+# from keras.preprocessing.image import load_img
 
 
-img_dog = load_img('./DATA/dog_cat/dog.jpg', target_size=(224, 224))
-img_cat = load_img('./DATA/dog_cat/cat.jpg', target_size=(224, 224))
-img_suit = load_img('./DATA/dog_cat/suit.jpg', target_size=(224, 224))
-img_onion = load_img('./DATA/dog_cat/onion.jpg', target_size=(224, 224))
+# img_dog = load_img('./DATA/dog_cat/dog.jpg', target_size=(224, 224))
+# img_cat = load_img('./DATA/dog_cat/cat.jpg', target_size=(224, 224))
+# img_suit = load_img('./DATA/dog_cat/suit.jpg', target_size=(224, 224))
+# img_onion = load_img('./DATA/dog_cat/onion.jpg', target_size=(224, 224))
 
-plt.imshow(img_suit)
-plt.imshow(img_onion)
-plt.imshow(img_dog)
-plt.imshow(img_cat)
-# plt.show()
+# plt.imshow(img_suit)
+# plt.imshow(img_onion)
+# plt.imshow(img_dog)
+# plt.imshow(img_cat)
+# # plt.show()
 
-from keras.preprocessing.image import img_to_array
+# from keras.preprocessing.image import img_to_array
 
-arr_dog = img_to_array(img_dog)
-arr_cat = img_to_array(img_cat)
-arr_onion = img_to_array(img_onion)
-arr_suit = img_to_array(img_suit)
+# arr_dog = img_to_array(img_dog)
+# arr_cat = img_to_array(img_cat)
+# arr_onion = img_to_array(img_onion)
+# arr_suit = img_to_array(img_suit)
 
-print(arr_dog)
-print(type(arr_dog))
-print(arr_dog.shape)
+# print(arr_dog)
+# print(type(arr_dog))
+# print(arr_dog.shape)
 
-# RGB -> BGR
-from keras.applications.vgg19 import preprocess_input
+# # RGB -> BGR
+# from keras.applications.vgg19 import preprocess_input
 
-# 데이터 전처리
-arr_dog = preprocess_input(arr_dog)
-arr_cat = preprocess_input(arr_cat)
-arr_suit = preprocess_input(arr_suit)
-arr_onion = preprocess_input(arr_onion)
+# # 데이터 전처리
+# arr_dog = preprocess_input(arr_dog)
+# arr_cat = preprocess_input(arr_cat)
+# arr_suit = preprocess_input(arr_suit)
+# arr_onion = preprocess_input(arr_onion)
 
-print(arr_dog)
+# print(arr_dog)
 
-# 이미지를 하나로 합친다.
-import numpy as np 
-arr_input = np.stack([arr_dog, arr_cat, arr_onion, arr_suit])
-print(arr_input.shape)  # (4, 224, 224, 3)
+# # 이미지를 하나로 합친다.
+# import numpy as np 
+# arr_input = np.stack([arr_dog, arr_cat, arr_onion, arr_suit])
+# print(arr_input.shape)  # (4, 224, 224, 3)
 
-# 모델 구성
-model = VGG19()
-probs = model.predict(arr_input)
+# # 모델 구성
+# model = VGG19()
+# probs = model.predict(arr_input)
 
-print(probs)
+# print(probs)
 
-print('probs.shape: ', probs.shape) # probs.shape:  (4, 1000)
+# print('probs.shape: ', probs.shape) # probs.shape:  (4, 1000)
 
-# 이미지 결과
-from keras.applications.vgg19 import decode_predictions
+# # 이미지 결과
+# from keras.applications.vgg19 import decode_predictions
 
-results = decode_predictions(probs)
+# results = decode_predictions(probs)
 
-print('-------------------')
-print(results[0])
-print('-------------------')
-print(results[1])
-print('-------------------')
-print(results[2])
-print('-------------------')
-print(results[3])
-# decode_predictions 하면 이렇게 됌.
+# print('-------------------')
+# print(results[0])
+# print('-------------------')
+# print(results[1])
+# print('-------------------')
+# print(results[2])
+# print('-------------------')
+# print(results[3])
+# # decode_predictions 하면 이렇게 됌.
+
+# import tensorflow as tf
+
+# tf.set_random_seed(777)
+
+# x_train = tf.placeholder(dtype=tf.float32, shape=[None])
+# y_train = tf.placeholder(dtype=tf.float32, shape=[None])
+
+# # x_train = [1,2,3]
+# # y_train = [3,5,7]
+
+# # feed_dict = {x_train_hold:x_train, y_train_hold:y_train}
+
+
+# W = tf.Variable(tf.random_normal([1]), name='Weight')
+# b = tf.Variable(tf.random_normal([1]), name='bias')
+
+# # sess = tf.Session()
+# # sess.run(tf.global_variables_initializer()) 
+# # print(sess.run(W))
+
+# hypothesis = x_train * W + b       
+
+# cost = tf.reduce_mean(tf.square(hypothesis - y_train))  
+
+# train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost) 
+
+# with tf.Session() as sess:  
+# # with tf.compat.v1.Session as sess:
+#     sess.run(tf.global_variables_initializer())
+#     sess.run(hypothesis, feed_dict={x_train:[1,2,3], y_train:[3,5,7]})
+#     sess.run(cost, feed_dict={x_train:[1,2,3], y_train:[3,5,7]})
+#     sess.run(train, feed_dict={x_train:[1,2,3], y_train:[3,5,7]})
+
+
+#     for step in range(2001):    
+#         _, cost_val, W_val, b_val = sess.run([train, cost, W, b])  
+
+#         if step % 20 == 0:  
+#             print(step, cost_val, W_val, b_val)
+
+import tensorflow as tf
+
+tf.set_random_seed(777)
+
+
+x_train = tf.placeholder(dtype=tf.float32, shape=[None])
+y_train = tf.placeholder(dtype=tf.float32, shape=[None])
+
+# x_train = [1,2,3]
+# y_train = [3,5,7]
+
+# feed_dict = {x_train_hold:x_train, y_train_hold:y_train}
+
+
+W = tf.Variable(tf.random_normal([1]), name='Weight')
+b = tf.Variable(tf.random_normal([1]), name='bias')
+
+# sess = tf.Session()
+# sess.run(tf.global_variables_initializer()) 
+# print(sess.run(W))
+
+hypothesis = x_train * W + b       
+
+cost = tf.reduce_mean(tf.square(hypothesis - y_train))  
+
+train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost) 
+
+with tf.Session() as sess:  
+# with tf.compat.v1.Session as sess:
+    sess.run(tf.global_variables_initializer())
+    sess.run(hypothesis, feed_dict={x_train:[1,2,3], y_train:[3,5,7]})
+    sess.run(cost, feed_dict={x_train:[1,2,3], y_train:[3,5,7]})
+    sess.run(train, feed_dict={x_train:[1,2,3], y_train:[3,5,7]})
+
+
+    for step in range(2001):    
+        _, cost_val, W_val, b_val = sess.run([train, cost, W, b])  
+
+        if step % 20 == 0:  
+            print(step, cost_val, W_val, b_val)

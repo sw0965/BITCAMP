@@ -709,7 +709,7 @@ for i in list(range(1, n+1)):
 # for i in dict_keys:
     # if a == i:
         # print(i)
-a = list(input().split())
+'''a = list(input().split())
 # b = input().split()
 # c = input().split()
 
@@ -727,7 +727,7 @@ multi = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 10000000
 for i in color, value, multi:
     if i == a:
         a = str(value[i])
-        print(a)
+        print(a)'''
 # https://www.acmicpc.net/problem/10797
 #------------10부제  문제 (브4)-------------#
 # day = int(input())
@@ -775,3 +775,23 @@ for i in color, value, multi:
 # b = math.ceil(y/cctv)
 
 # print(a*b)
+
+# https://www.acmicpc.net/problem/16199
+#-----------나이 계산하기 문제 (브4)-------------#
+birth = list(map(int,input().split()))
+standar = list(map(int,input().split()))
+
+
+
+if birth[0] == standar[0]:
+    print(0)
+elif standar[0] - birth[0] > 0:
+    if standar[1] - birth[1] >= 0:
+        if standar[2] >= birth[2]:
+            print(standar[0] - birth[0])
+
+count_age = standar[0] - birth[0] + 1
+year_age = standar[0] - birth[0]
+
+print(count_age)
+print(year_age)
