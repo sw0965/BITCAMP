@@ -781,17 +781,19 @@ for i in color, value, multi:
 birth = list(map(int,input().split()))
 standar = list(map(int,input().split()))
 
+year = standar[0] - birth[0]
+month = standar[1] - birth[1]
+date = standar[2] - birth[2]
 
-
-if birth[0] == standar[0]:
+# if birth[0] == standar[0]:
+#     print(0)
+if year > 0 and month >= 0 and date >= 0:
+    print(year)
+else:
     print(0)
-elif standar[0] - birth[0] > 0:
-    if standar[1] - birth[1] >= 0:
-        if standar[2] >= birth[2]:
-            print(standar[0] - birth[0])
 
-count_age = standar[0] - birth[0] + 1
-year_age = standar[0] - birth[0]
+count_age = year + 1
+year_age = year
 
 print(count_age)
 print(year_age)
