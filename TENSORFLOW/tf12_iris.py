@@ -45,7 +45,7 @@ hypho = tf.matmul(x,w) + b
 hyphothesis = tf.nn.softmax(hypho)
 # test_hypho = tf.nn.softmax(tf.matmul(x,w) + b)
 
-loss = tf.reduce_mean(-tf.reduce_sum(y * tf.log(hypho),axis=1)) 
+loss = tf.reduce_mean(-tf.reduce_sum(y * tf.log(hyphothesis),axis=1)) 
 # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(hypho, y))  
 
 
@@ -54,8 +54,8 @@ opt = tf.train.GradientDescentOptimizer(learning_rate=1e-4).minimize(loss)
 # predicted = tf.cast(tf.argmax(hypho, dtype=tf.float32))
 # accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, y), dtype=tf.float32))
 
-predicted = tf.arg_max(hyphothesis,1)
-acc = tf.reduce_mean(tf.cast(tf.equal(predicted, tf.argmax(y,1)), dtype=tf.float32))
+# predicted = tf.arg_max(hyphothesis,1)
+# acc = tf.reduce_mean(tf.cast(tf.equal(predicted, tf.argmax(y,1)), dtype=tf.float32))
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
@@ -66,8 +66,8 @@ with tf.Session() as sess:
         if step % 200 == 0 :
             print( step , cost_val)
 
-    h, c, a = sess.run([hypho, predicted, acc], feed_dict={x:x_test})
-    print("\n\n Hypothesis :", "\n",h, "\n\n Predict :","\n",c, "\n\n accuracy :", a)
+    # h, c, a = sess.run([test_hypho, _, acc], feed_dict={x:x_test})
+    # print("\n\n Hypothesis :", "\n",h, "\n\n Predict :","\n",c, "\n\n accuracy :", a)
 
     # pred = sess.run(hypho, feed_dict={x:x_test})
     # print(pred, sess.run(tf.argmax(pred, 1)))
