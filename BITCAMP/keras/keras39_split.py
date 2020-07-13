@@ -11,7 +11,7 @@ print("============453453453================")
 
 print(a)
 print("========453243===========")
-'''
+
 def split_x(seq, size):    #size = lstm의 timesteps (열)
     aaa = []
     for i in range(len(seq) - size + 1): #<-이게 행 길이에서 - size + 1 = 열 
@@ -23,7 +23,7 @@ def split_x(seq, size):    #size = lstm의 timesteps (열)
 dataset = split_x(a, size)
 print("============================")
 print(dataset)
-'''
+
 
 '''
 def split_x(seq, size):
