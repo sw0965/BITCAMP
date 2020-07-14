@@ -21,27 +21,31 @@ print(dataset)
 
 
 # MAKE x_data, y_data
-x_data = dataset[:,:5].reshape(1, 5, 5)
-print(x_data.shape)     # (5, 5)
+x_data = dataset[:,:5].reshape(5, 1, 5)
+print(x_data.shape)     # (5, 1, 5)
+print(x_data)
 y_data = dataset[:,5:]
 print(y_data.shape)     # (5, 1)
 
 # y_data = np.argmax(y_data, axis=1)
-
+SEQ_LEN = 1
+INPUT_DIM = 5
+BATCH_SIZE = 5
+OUTPUT = 11
 
 # MAKE RNN MODEL
-X = tf.compat.v1.placeholder(dtype=tf.float32, shape=[None, 5, 5])
-Y = tf.compat.v1.placeholder(dtype=tf.int32, shape=[None, 1])
+X = tf.compat.v1.placeholder(dtype=tf.float32, shape=[None, SEQ_LEN, INPUT_DIM])
+Y = tf.compat.v1.placeholder(dtype=tf.int32, shape=[None, SEQ_LEN])
 
-cell = tf.keras.layers.LSTMCell(5)
+cell = tf.keras.layers.LSTMCell(OUTPUT)
 hypothesis, _state = tf.nn.dynamic_rnn(cell, X, dtype=tf.float32)
-print(hypothesis)   # shape(none, 5, 1)
+print(hypothesis)   # shape(none, 1, 5)
 
 # COMPILE
-weight = tf.ones([5, 1])
+weight = tf.ones([BATCH_SIZE, SEQ_LEN])
 sequence_loss = tf.contrib.seq2seq.sequence_loss(
     logits=hypothesis, 
-    #targets=Y, 
+    targets=Y, 
     weights=weight)
 
 cost = tf.compat.v1.reduce_mean(sequence_loss)

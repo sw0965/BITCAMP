@@ -9,6 +9,8 @@
 *json
 *mp4
 *jpg
+*npy
+*db
 # directories
 /train/
 /validation/
