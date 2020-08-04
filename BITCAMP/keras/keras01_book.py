@@ -10,9 +10,9 @@ from keras.models import Sequential # 층을 구성하는 인풋에서 아웃풋
 from keras.layers import Dense
 
 model = Sequential()
-model.add(Dense(1,input_dim = 1,activation='relu'))
+model.add(Dense(1,input_dim = 1, activation='relu'))
 
 
 # 3. 훈련
 model.compile(loss = 'mean_squared_error', optimizer='adam',metrics=['accuracy'])
-model.fit(x,y,epochs=200,batch_size=1)
+model.fit(x,y,epochs=200, batch_size=1)

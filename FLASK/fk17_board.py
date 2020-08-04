@@ -29,7 +29,7 @@ def modi():
     rows = c.fetchall();
     return render_template("board_modi.html", rows = rows)
 
-@app.route('/addrec', methods=['POST', 'GET'])   # 웹 내에서 수정할수 있게 만들어주는 함수
+@app.route("/addrec", methods = ["POST", "GET"])   # 웹 내에서 수정할수 있게 만들어주는 함수
 def addrec():
     if request.method == 'POST':
         try:    # 예외처리에서 좀 더 깔끔하게 하기 위해서 try를 사용
@@ -39,7 +39,7 @@ def addrec():
 
             with sqlite3.connect("./DATA/wanggun.db") as con:
                 cur = con.cursor()
-                cur.execute("UPDATE general SET war = " + str(war)+ "WHERE id="+str(id))
+                cur.execute("UPDATE general SET war = " + str(war)+ " WHERE id="+str(id))
                 # cur.execute("UPDATE general SET war = " + str(war)+ "WHERE id="+str(id))
                 # cur.execute("UPDATE general SET war= %s where id = %s " %(str(war), str(id1)))
 
@@ -55,7 +55,7 @@ def addrec():
 
             return render_template("board_result.html", msg = msg)
 
-app.run(host='127.0.0.1', port=5001, debug=False)
+app.run(host='127.0.0.1', port=8800, debug=False)
 
 
 

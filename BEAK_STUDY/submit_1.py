@@ -1,32 +1,31 @@
-# https://www.acmicpc.net/problem/13136
-#-----------Do Not Touch Anything  문제 (브4)-------------#
-# 쌩쇼
-# x, y, cctv = map(int,input().split())
-# a = x%cctv
-# b = y%cctv
-# c = cctv
-# d = cctv
-# if a != 0 and b != 0:
-#     c = cctv + 1
-#     d = cctv + 1
-#     print(c*d)
+# https://www.acmicpc.net/problem/19532
+#----------수학은 비대면강의입니다  문제 (브3)-------------#
 
-# elif a == 0 and b != 0:
-#     c = cctv
-#     d = cctv+1
-#     print(c*d)
-
-# elif a != 0 and b == 0:
-#     c = cctv+1
-#     d = cctv
-#     print(c*d)
 
 
 # 정답
-import math
-x, y, cctv = map(int,input().split())
 
-a = math.ceil(x/cctv)
-b = math.ceil(y/cctv)
+a,b,c,d,e,f = map(int,input().split())
 
-print(a*b)
+x = (c*e-b*f)/(a*e-b*d)
+y = (a*f-c*d)/(a*e-b*d)
+print(int(x),int(y))
+
+
+
+# y = (c*d-f*a)//(b*d-e*a)
+# x = (c - (b*y))//a
+
+# print(x, y)
+# x = c-by/a
+
+# x = -999<= x <= 999
+# fir = a*x + b*y == c
+# sec = d*x + e*y == f
+# print(x)
+# print(y)
+
+# if -999<=int(x)<=999 and -999<=int(y)<=999: 
+#     if ax+by == c and dx+ey==f:
+#         if (ax-dx)+(by-ey)==(c-f):
+#             print(x, y)

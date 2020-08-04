@@ -15,7 +15,7 @@ def grap_month(data):
     return int(data[4:])
 
 # 날짜 처리
-data = pd.read_csv('./DACON/comp_jeju/data/201901-202003.csv')
+data = pd.read_csv('./DACON/comp_JEJU/data/201901-202003.csv')
 data = data.fillna('')
 data['year'] = data['REG_YYMM'].apply(lambda x: grap_year(x))
 data['month'] = data['REG_YYMM'].apply(lambda x: grap_month(x))
@@ -87,9 +87,10 @@ temp['CARD_SIDO_NM'] = encoders['CARD_SIDO_NM'].inverse_transform(temp['CARD_SID
 temp['STD_CLSS_NM'] = encoders['STD_CLSS_NM'].inverse_transform(temp['STD_CLSS_NM'])
 
 # 제출 파일 만들기
-submission = pd.read_csv('./DACON/comp_jeju/data/submission.csv', index_col=0)
+submission = pd.read_csv('./DACON/comp_jeju/data/submission1.csv', index_col=0)
 submission = submission.drop(['AMT'], axis=1)
 submission = submission.merge(temp, left_on=['REG_YYMM', 'CARD_SIDO_NM', 'STD_CLSS_NM'], right_on=['REG_YYMM', 'CARD_SIDO_NM', 'STD_CLSS_NM'], how='left')
 submission.index.name = 'id'
-submission.to_csv('./DACON/comp_jeju/submission/submission.csv', encoding='utf-8-sig')
+submission.to_csv('./DACON/comp_JEJU/submission/submission.csv', encoding='utf-8-sig')
 submission.head()
+
