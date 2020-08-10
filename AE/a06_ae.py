@@ -1,9 +1,9 @@
-# a2~5는 auto encorder가 아님 1, 6이 autoencorder
+# a2~5는 auto encoder가 아님 1, 6이 autoencoder
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
-def autoencorder(hidden_layer_size):
+def autoencoder(hidden_layer_size):
     model = Sequential()
     model.add(Dense(units=hidden_layer_size, input_shape=(784,), activation='relu'))
     model.add(Dense(units=784, activation='sigmoid'))
@@ -23,7 +23,7 @@ x_test = x_test/255.
 
 print(x_train.shape, x_test.shape)  # (60000, 784) (10000, 784)
 
-model = autoencorder(hidden_layer_size=154)
+model = autoencoder(hidden_layer_size=154)
 
 # model.compile(optimizer='adam', loss='mse', metrics=['acc'])                   # 32 loss = 0.0102, acc = 0.0131 나옴 ..
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])     # 32 loss = 0.0936, acc = 0.8142 나왔는데 acc 보고 판단말고 loss 를 보고 판단하여라 - 쌤

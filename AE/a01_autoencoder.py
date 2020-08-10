@@ -37,14 +37,14 @@ input_img = Input(shape=(784,))
 encoded = Dense(64, activation='relu')(input_img)       # 여기에 들어가는 숫자 낮으면 낮을수록 강한 특성만 추출
 decoded = Dense(784, activation='sigmoid')(encoded)     # sigmoid 를 쓰는 이유? 사진속에 특징을 추출하기 위해서 이미지속에 데이터를 0과 1로 구분을 해 둔상태에서 1이 비교적 특징이 있으니 sigmoid사용
 
-autoencorder = Model(inputs= input_img, outputs= decoded)
+autoencoder = Model(inputs= input_img, outputs= decoded)
 
-autoencorder.summary()
+autoencoder.summary()
 
-autoencorder.compile(optimizer='adam', loss='binary_crossentropy')
-autoencorder.fit(x_train, x_train, epochs=50, batch_size=256, validation_split=0.2)
+autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
+autoencoder.fit(x_train, x_train, epochs=50, batch_size=256, validation_split=0.2)
 
-decoded_imgs = autoencorder.predict(x_test)
+decoded_imgs = autoencoder.predict(x_test)
 
 
 n = 10

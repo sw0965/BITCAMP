@@ -11,6 +11,9 @@
 *jpg
 *npy
 *db
+*MOV
+*exe
+*zip
 # directories
 /train/
 /validation/
