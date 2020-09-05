@@ -778,25 +778,25 @@ for i in color, value, multi:
 
 # https://www.acmicpc.net/problem/16199
 #-----------나이 계산하기 문제 (브4)-------------#
-birth = list(map(int,input().split()))
-standar = list(map(int,input().split()))
+# birth = list(map(int,input().split()))
+# standar = list(map(int,input().split()))
 
-year = standar[0] - birth[0]
-month = standar[1] - birth[1]
-date = standar[2] - birth[2]
+# year = standar[0] - birth[0]
+# month = standar[1] - birth[1]
+# date = standar[2] - birth[2]
 
-# if birth[0] == standar[0]:
+# # if birth[0] == standar[0]:
+# #     print(0)
+# if year > 0 and month >= 0 and date >= 0:
+#     print(year)
+# else:
 #     print(0)
-if year > 0 and month >= 0 and date >= 0:
-    print(year)
-else:
-    print(0)
 
-count_age = year + 1
-year_age = year
+# count_age = year + 1
+# year_age = year
 
-print(count_age)
-print(year_age)
+# print(count_age)
+# print(year_age)
 
 
 
@@ -832,12 +832,346 @@ print(year_age)
 #         if (ax-dx)+(by-ey)==(c-f):
 #             print(x, y)
 
-JOI군은 내일부터 새로운 소셜 게임을 시작하기로 결정했다.
+# https://www.acmicpc.net/problem/7287 
+#----------- 등록  문제 (브5)-------------#
+ 
+# 정답: print(f'42 \nhsw0965')
 
-이 소셜 게임에서는 하루에 대하여. 1회까지 로그인할 수 있으며, 로그인할 때마다 우리는 A장의 동전을 얻을 수 있다.
+# https://www.acmicpc.net/problem/2440
+#-----------  별 찍기 -3 문제 (브3)-------------#
+# 정답
+# N = int(input())
 
-또, 월요일부터 일요일까지 7일 연속 로그인을 하면 그때마다 추가적으로 비 개의 동전을 얻을 수 있다.
+# a = '*'
+# while True:
+#     print(N*a)
+#     N = N-1
+#     if N == 0:
+#         break
 
-코인을 이것 말고는 다른 코인을 받을 수 없다.
+# https://www.acmicpc.net/problem/11720
+#-----------  숫자의 합 문제 (브2)-------------#
 
-내일은 월요일이다. JOI가 적어도 C장의 동전을 얻기 위해 로그인해야 하는 최소 횟수를 구하라.
+# N = int(input())
+# S = input()
+# a = '1234'
+# print(a[:2])
+# ls = []
+# for i in str(a):
+#     print(int(a[i]))
+#     # print(ls)
+
+# print(sum,int(a[0:]))
+# a = 3
+# print('a'*a)
+
+# https://www.acmicpc.net/problem/2953
+#-----------  나는 요리사다 문제 (브3)-------------#
+# 정답:
+# A = map(int,input().split())
+# B = map(int,input().split())
+# C = map(int,input().split())
+# D = map(int,input().split())
+# E = map(int,input().split())
+
+# ls=[A,B,C,D,E]
+# score = []
+# for i in ls:
+#     a = sum(i)
+#     score.append(a)
+
+# print(score.index(max(score))+1,max(score))
+
+# 실패
+# A = map(int,input().split())
+# B = map(int,input().split())
+# C = map(int,input().split())
+# D = map(int,input().split())
+# E = map(int,input().split())
+
+# ls=[sum(A),sum(B),sum(C),sum(D),sum(E)]
+# print(ls.index(max(ls))+1,max(ls))
+
+# score = []
+# for i in ls:
+#     a = sum(i)
+#     score.append(a)
+
+'''
+ls.index +1을 안해줘서 4번으로 나와야되는게 계속 3번으로 나왔다.
+'''
+
+# https://www.acmicpc.net/problem/1712
+#-----------   손익분기점  문제 (브4)-------------#
+
+# 기본 구성 구상.
+'''
+A = 2
+B = 1
+while True:
+    C = A*B
+    B = B+1
+    print(C)
+
+    if C == 100:
+        break
+'''
+# A, B, C = map(int,input().split())
+
+# COUNT = 1
+
+# while True:
+#     '''
+#     labor_cost = 인건비
+#     sales_cost = 판매비용
+#     production_cost = 생산비용
+#     '''
+#     print('COUNT = ', COUNT)
+#     print()
+#     labor_cost = COUNT*B
+#     print('labor_cost = ', labor_cost)
+#     sales_cost = COUNT*C
+
+#     production_cost = A + labor_cost
+#     print('production_cost = ', production_cost)
+#     print()
+
+#     print('sales_cost = ', sales_cost)
+#     print()
+#     if labor_cost >= sales_cost:
+#         print(-1)
+#     if production_cost < sales_cost:
+#         print(COUNT)
+#         break
+#     COUNT = COUNT+1
+
+# A, B, C = map(int,input().split())
+
+# COUNT = 0
+
+# while True:
+#     COUNT = COUNT+1
+
+#     labor_cost = COUNT*B
+#     sales_cost = COUNT*C
+#     production_cost = A + labor_cost
+
+#     if labor_cost >= sales_cost:
+#         print(-1)
+#         break
+
+#     if production_cost < sales_cost:
+#         print(COUNT)
+#         break
+# while False:
+#     break
+
+# A, B, C = map(int,input().split())
+
+# COUNT = 0
+
+# while True:
+#     '''
+#     labor_cost = 인건비
+#     sales_cost = 판매비용
+#     production_cost = 생산비용
+#     '''
+
+#     COUNT = COUNT+1
+
+#     labor_cost = COUNT*B
+#     sales_cost = COUNT*C
+#     production_cost = A+labor_cost
+
+#     if labor_cost >= sales_cost:
+#         print(-1)
+#         break
+
+#     elif production_cost < sales_cost:
+#         print(COUNT)
+#         break
+    # 정답
+# a,b,c = map(int,input().split())
+
+# if c>b:
+# 	print(a//(c-b)+1)
+# else:
+# 	print(-1)
+
+# while 을 사용하면 21억까지 쭉 돌리기때문에 그냥 식을 사용해서 풀라고 성인이가 말해줌.
+
+# https://www.acmicpc.net/problem/10250
+#-----------  ACM 호텔  문제 (브3)-------------#
+
+# case = int(input())
+
+# for _ in range(case):
+#     H, W, N = map(int,input().split())
+#     if N<=W*H:
+#         print((N%H)*100 + N//H +1)
+# # print(10%6, 10//6)
+
+
+# https://www.acmicpc.net/problem/1225
+#-----------  이상한 곱셈  문제 (브2)-------------#
+
+# a, b= input().split()
+
+# a_ls, b_ls = [], []
+# c, d = 0
+# for i, j in len(a), len(b):
+#     a_ls.append(a[0])
+#     c =+ 1
+#     b_ls.append(b[0])
+#     d =+ 1
+
+#     print(a_ls)
+#     print(b_ls)
+
+
+
+# a = '1234'
+# print(len(a))
+# print(list(a))
+# for i in list(a):
+#     print(a)
+
+# a, b = input().split()
+
+# a,b = list(a), list(b)
+# print(a, b)
+# a = int(a)
+# print(a)
+
+# for i in int(a):
+#     print(i)
+
+# a, b = list(map(int().split()))
+# print(a, b)
+
+# time out
+# a, b = input().split()
+
+# # a,b = list(map(int, a)), list(map(int, b))
+# # print(a, b)
+# # a[0]*b[0]
+# # a[0]*b[1]
+# results = []
+# for i in list(map(int,a)):
+#     for j in list(map(int, b)):
+#         # print(sum(results.append(i*j)))
+#         result = i*j
+#         results.append(result)
+# print(sum(results))
+#         # sum(results)
+
+'''# time out'''
+'''import sys
+a, b = sys.stdin.readline().split()
+
+
+results = []
+for i in list(map(int,a)):
+    for j in list(map(int, b)):
+        
+        result = i*j
+        results.append(result)
+
+print(sum(results))'''
+
+# 규칙을 찾아보기로 함
+'''정답'''
+# import sys
+
+# a, b = sys.stdin.readline().split()
+
+# a_ls = []
+# for i in list(map(int,a)):
+#     a_ls.append(i)
+#     c = sum(a_ls)
+# b_ls = []
+# for j in list(map(int,b)):
+#     b_ls.append(j)
+#     d = sum(b_ls)
+# print(c*d)
+
+# ---------------------
+# print(sum(ls))
+    # sum(ls)
+    # print(c)
+    # d = ls.append(j)
+
+#     print(i)
+#     sum_a = sum(i)
+# print(sum_a)
+
+# https://www.acmicpc.net/problem/1402
+#-----------  아무래도이문제는A번난이도인것같다 문제 (브1)-------------#
+# 이건 몬소린지 모르겠음
+# print('yes '*int(input()))
+# https://www.acmicpc.net/problem/1453 피시방 알바
+#-----------  피시방 알바 문제 (브1)-------------#
+
+# customer = int(input())
+
+# a = range(customer)
+# print(a)
+# for _ in range(customer):
+#     seat = 
+# seats = map(int,input().split())
+
+# pc = []
+# for i in seats:
+#     if i in seats:
+#         i == i
+#         print(i)
+        # pc.append(i)
+        # print(i)
+    # pc.append(i)
+    # print(pc)
+"""cnt = []
+count = {}
+for i in seats:
+    pc.append(i)
+
+for i in pc:
+    try: count[i] += 1
+    except: count[i] = 1
+a = set(count.values())
+
+for i in a:
+    if i >= 2:
+        cnt.append(i)
+        print(cnt)
+알고리즘 복잡하게 가다가 수학적으로 생각하기로 함."""
+# print(sum(a))
+# cnt.append(a)
+# print(cnt)
+
+    # set
+    # if dict.values() <= 2:
+        # print(count.values())
+
+# print(count.keys())
+# print(count.values())
+customer = int(input()) # 손님 수
+
+seats = map(int,input().split()) # 원하는 좌석
+
+pc = [] # 원하는 pc 
+cnt = {} # 중복된 값들
+for i in seats:
+    '''손님들이 원하는 좌석들을 pc라는 list에 넣기'''
+    pc.append(i)
+
+for i in pc:
+    '''cnt라는 딕셔너리를 만들어서 key값을 뽑기위한 작업
+    만약 5명 손님이 1 1 2 2 3 이라는 pc 를 원할때
+    1:2 2:2 3:1 이렇게 key값이 3개 나오기 때문에
+    전체 손님수에서 key값을 빼준다.'''
+    try: cnt[i] += 1
+    except: cnt[i] = 1
+# print(set(cnt.keys))
+a = cnt.keys()
+print(customer - len(a)) # 전체 손님수에서 key값을 뺀다.
+# print(a)
